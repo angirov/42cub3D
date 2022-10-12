@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:09:46 by mokatova          #+#    #+#             */
-/*   Updated: 2022/09/30 19:23:55 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:55:11 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ int	import_textures(char *line, t_image *texture, t_parser *game)
 {
 	char	*tmp;
 
-	tmp = ft_substr(line, 0, ft_strlen(line) - 1);
-	if (ft_strncmp(&line[ft_strlen(line) - 5], ".xpm", 4) == 0)
+	tmp = ft_substr(line, 0, ft_strlen(line));
+	if (ft_strncmp(&line[ft_strlen(line) - 4], ".xpm", 4) == 0)
 		texture->ptr = mlx_xpm_file_to_image(game->mlx, tmp,
 				&texture->width, &texture->height);
 	else
