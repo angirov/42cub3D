@@ -37,7 +37,6 @@ void	player_turn_left(t_player *player)
 void	set_sizes(t_game *game, int grid_width, int grid_heigth, int scale)
 {
 	game->parser->map->columns = grid_width;
-	printf(">>> TEST\n");
 	game->parser->map->rows = grid_heigth;
 	game->scale = scale;
 	game->px_width = game->parser->map->columns * game->scale;

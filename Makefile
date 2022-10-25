@@ -1,7 +1,7 @@
 NAME = cub3D
 
 SRCS_DIR = srcs/
-SRCS_FILES =	main_new.c \
+SRCS_FILES =	main.c \
 				mlx_api/free_mlx.c \
 				drawing.c \
 				game.c \

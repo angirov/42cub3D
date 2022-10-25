@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:32:40 by vangirov          #+#    #+#             */
-/*   Updated: 2022/09/13 15:21:28 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/10/25 21:07:51 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,14 @@ void	set_side_dist(t_game *g, t_raycast *rc, int x, int side)
 	g->sides[x] = side;
 }
 
+int		is_wall(t_game *g, int x, int y)
+{
+	if (g->parser->map->values[y][x] != '0')
+		return (1);
+	else
+		return (0);
+}
+
 void	perform_rc(t_game *g, t_raycast *rc, int x)
 {
 	int	hit;
@@ -101,7 +109,7 @@ void	perform_rc(t_game *g, t_raycast *rc, int x)
 			rc->map_y += rc->step_y;
 			side = 1;
 		}
-		if (g->map[rc->map_y * 24 + rc->map_x] > 0)
+		if (is_wall(g, rc->map_x, rc->map_y))
 			hit = 1;
 	}
 	set_side_dist(g, rc, x, side);
