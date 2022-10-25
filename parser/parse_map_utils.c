@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:13:20 by mokatova          #+#    #+#             */
-/*   Updated: 2022/10/12 13:33:06 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/10/25 20:13:02 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	assign_values(t_parser *game, t_list *list)
 	while (list)
 	{
 		ft_strlcpy(game->map->values[i++], (char *)list->content,
-			ft_strlen((char *)list->content));
+			ft_strlen((char *)list->content) + 1);
 		list = list->next;
 	}
 }
