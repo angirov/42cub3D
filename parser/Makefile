@@ -1,10 +1,10 @@
 
 NAME				:=	cub3D
 LIBFT_TOOLS_LIB		:=	libft.a
-LIBFT_TOOLS_PATH	:=	libft
+LIBFT_TOOLS_PATH	:=	../libft
 
 LIB_PATH			:=	./
-MLX_PATH			:=	minilibx-linux
+MLX_PATH			:=	../minilibx-linux
 MLX_LIB				:=	mlx_Linux
 
 OBJ_FOLDER			:=	objs
@@ -24,7 +24,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C $(MLX_PATH)
 	make -C $(LIBFT_TOOLS_PATH)
-	$(CC) $(CFLAGS) -g $(OBJS) -L$(LIBFT_TOOLS_PATH) libft/libft.a -L$(MLX_PATH) -l$(MLX_LIB) -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(CFLAGS) -g $(OBJS) -L$(LIBFT_TOOLS_PATH) ../libft/libft.a -L$(MLX_PATH) -l$(MLX_LIB) -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
 
 $(OBJS): $(OBJ_FOLDER)/%.o: %.c
 	@mkdir -p $(@D)
