@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:30:22 by mokatova          #+#    #+#             */
-/*   Updated: 2022/10/12 13:55:44 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:31:06 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ void	parse_map(t_parser *game, int fd, char *line)
 	assign_values(game, list);
 	clear_list(&list);
 	is_map_ok(game);
+	parse_player(game);
 }

@@ -13,7 +13,7 @@ HEADERFILE			:=	parser.h
 
 SRC_LIB				:=	
 
-SRCS			:=	parse.c errors.c colors_n_textures.c main.c map_checker.c parse_map_utils.c
+SRCS			:=	parse.c errors.c colors_n_textures.c main.c map_checker.c parse_map_utils.c parse_player.c
 
 OBJS			:=	$(SRCS:%.c=$(OBJ_FOLDER)/%.o)
 

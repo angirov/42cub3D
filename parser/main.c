@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 16:57:30 by mokatova          #+#    #+#             */
-/*   Updated: 2022/10/25 19:07:35 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:42:45 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,13 @@ int	main(int argc, char **argv)
 		}
 		ft_putchar_fd('\n', 1);
 	}
+	ft_putendl_fd("", 1);
+	ft_putstr_fd("The player's direction was parsed as ", 1);
+	ft_putnbr_fd(game.map->player_dir, 1);
+	ft_putstr_fd(", his x - ", 1);
+	ft_putnbr_fd(game.map->player_x, 1);
+	ft_putstr_fd(", his y - ", 1);
+	ft_putnbr_fd(game.map->player_y, 1);
+	ft_putendl_fd("", 1);
 	quit_game(&game, 0, NULL);
 }

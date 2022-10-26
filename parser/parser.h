@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 16:57:40 by mokatova          #+#    #+#             */
-/*   Updated: 2022/10/25 15:45:28 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:32:47 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ typedef struct s_map
 	int		rows;
 	int		columns;
 	char	**values;
+	int		player_dir;
+	int		player_x;
+	int		player_y;
 }	t_map;
 
 typedef struct s_parser
@@ -83,5 +86,8 @@ void	any_wrong_symbols(t_parser *game, char **values);
 void	are_borders_in_place(t_parser *game, char **values);
 void	any_extra_players(t_parser *game, char **values);
 int		is_valid(char c);
+/////parse_player.c
+void	parse_player(t_parser *game);
+void	assign_direction(t_parser *game, char c);
 
 #endif
