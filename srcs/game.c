@@ -4,7 +4,7 @@ void	player_set_locdir(t_game *g)
 {
 	g->player->loc.x = g->parser->map->player_x;
 	g->player->loc.y = g->parser->map->player_y;
-	g->player->direction = dtr(g->parser->map->player_dir); ///// degrees - 180
+	g->player->direction = dtr(g->parser->map->player_dir + 180);
 }
 
 void	player_move_N(t_player *player)
