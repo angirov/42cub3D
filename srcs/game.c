@@ -7,21 +7,54 @@ void	player_set_locdir(t_game *g)
 	g->player->direction = dtr(g->parser->map->player_dir + 180);
 }
 
-void	player_move_N(t_player *player)
+void	player_move_N(t_player *p)
 {
-	player->loc.y -= player->speed;
+	int new_y;
+
+	new_y = p->loc.y - p->speed;
+	printf("new_y %d\n", new_y);
+	if (is_wall(p->game, (int)p->loc.x, new_y))
+	{
+		printf("collision N\n");
+	}
+	else
+		p->loc.y -= p->speed;
 }
-void	player_move_S(t_player *player)
+void	player_move_S(t_player *p)
 {
-	player->loc.y += player->speed;
+	int new_y;
+
+	new_y = p->loc.y + p->speed;
+	if (is_wall(p->game, (int)p->loc.x, new_y))
+	{
+		printf("collision S\n");
+	}
+	else
+		p->loc.y += p->speed;
 }
-void	player_move_E(t_player *player)
+void	player_move_E(t_player *p)
 {
-	player->loc.x += player->speed;
+	int new_x;
+
+	new_x = p->loc.x + p->speed;
+	if (is_wall(p->game, new_x, (int)p->loc.y))
+	{
+		printf("collision E\n");
+	}
+	else
+		p->loc.x += p->speed;
 }
-void	player_move_W(t_player *player)
+void	player_move_W(t_player *p)
 {
-	player->loc.x -= player->speed;
+	int new_x;
+
+	new_x = p->loc.x - p->speed;
+	if (is_wall(p->game, new_x, (int)p->loc.y))
+	{
+		printf("collision W\n");
+	}
+	else
+		p->loc.x -= p->speed;
 }
 
 void	player_turn_right(t_player *player)
