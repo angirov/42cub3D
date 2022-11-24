@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:20:19 by vangirov          #+#    #+#             */
-/*   Updated: 2022/11/24 10:35:06 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:23:27 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 void	draw_all(t_game *game)
 {
 	cast_rays(game->player);
-	// draw_walls(game);
+	draw_walls(game);
 	map_background(game);
 	draw_grid(game);
-	// draw_rays(game);
+	draw_rays(game);
 	mlx_put_image_to_window(game->graphics->mlx_ptr, game->graphics->win_ptr,
 		game->graphics->img_prt, 0, 0);
 }
