@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:31:21 by vangirov          #+#    #+#             */
-/*   Updated: 2022/11/24 14:25:32 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:06:08 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ int	map_value(t_game *g, int x, int y)
 	return (g->parser->map->values[y][x]);
 }
 
+bool is_wall(t_game *g, int x, int y)
+{
+	return (ft_strchr("1  ", map_value(g, x, y)));
+}
+
 void	fill_grid(t_game *g, int x, int y, int scale)
 {
-	// int s = g->scale;
-	if (map_value(g, x, y) != '0')
-		// printf("%d", g->map[y * g->parser->map.width + x]);
+	if (is_wall(g, x, y))
 		fill_sqare(g, (t_loc){x, y}, 1, GRAY);
 }
 

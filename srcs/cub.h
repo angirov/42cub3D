@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:05:05 by vangirov          #+#    #+#             */
-/*   Updated: 2022/11/24 10:36:14 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:51:33 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
+# include <stdbool.h>
 
 # define _USE_MATH_DEFINES
 # define SHIFT_VAL 100
@@ -150,6 +151,7 @@ int map_value(t_game *g, int x, int y);
 void	fill_grid(t_game *g, int x, int y, int scale);
 void	map_background(t_game *g);
 void	draw_grid(t_game *g);
+bool is_wall(t_game *g, int x, int y);
 
 // raycasting.c
 void	cast_rays(t_player	*p);
