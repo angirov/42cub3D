@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:05:05 by vangirov          #+#    #+#             */
-/*   Updated: 2022/11/24 14:51:33 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:51:39 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define WIDTH 1600
 # define HEIGHT 800
 # define HORISONT 0.7
-# define TITLE "Fdf"
+# define TITLE "Cub3D"
 
 // colors
 # define WHITE 0xffffff
