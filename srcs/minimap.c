@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:31:21 by vangirov          #+#    #+#             */
-/*   Updated: 2022/10/25 21:18:39 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:25:32 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	fill_grid(t_game *g, int x, int y, int scale)
 
 void	map_background(t_game *g)
 {
-	fill_rect(g, (t_loc){0, 0}, g->parser->map->columns, g->parser->map->rows, L_GRAY);
+	fill_rect(g, (t_loc){0, 0}, \
+	g->parser->map->rows, g->parser->map->columns, L_GRAY);
 }
 
 void	draw_grid(t_game *g)
