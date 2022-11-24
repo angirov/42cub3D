@@ -2,8 +2,8 @@
 
 void	player_set_locdir(t_game *g)
 {
-	g->player->loc.x = g->parser->map->player_x;
-	g->player->loc.y = g->parser->map->player_y;
+	g->player->loc.x = g->parser->map->player_x + 0.5;
+	g->player->loc.y = g->parser->map->player_y + 0.5;
 	g->player->direction = dtr(g->parser->map->player_dir + 180);
 }
 
