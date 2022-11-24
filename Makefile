@@ -15,7 +15,9 @@ PARSER_FILES =	parser/colors_n_textures.c \
 				parser/errors.c \
 				parser/map_checker.c \
 				parser/parse.c \
-				parser/parse_map_utils.c
+				parser/parse_map_utils.c \
+				parser/parse_player.c
+
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES)) $(PARSER_FILES)
 

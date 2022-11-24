@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:05:05 by vangirov          #+#    #+#             */
-/*   Updated: 2022/09/15 20:25:49 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/11/24 10:36:14 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ typedef struct s_game
 }	t_game;
 
 void	set_sizes(t_game *game, int width, int heigth, int scale);
-void	player_set_location(t_player *player, t_loc loc);
+void	player_set_locdir(t_game *g);
 
 // void	player_move_forward(t_player *player);
 // void	player_move_back(t_player *player);

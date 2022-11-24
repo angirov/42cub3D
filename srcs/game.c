@@ -1,9 +1,10 @@
 #include "cub.h"
 
-void	player_set_location(t_player *player, t_loc loc)
+void	player_set_locdir(t_game *g)
 {
-	player->loc.x = loc.x;
-	player->loc.y = loc.y;
+	g->player->loc.x = g->parser->map->player_x;
+	g->player->loc.y = g->parser->map->player_y;
+	g->player->direction = dtr(g->parser->map->player_dir); ///// degrees - 180
 }
 
 void	player_move_N(t_player *player)
