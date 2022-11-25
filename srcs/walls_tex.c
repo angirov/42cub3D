@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:22:36 by vangirov          #+#    #+#             */
-/*   Updated: 2022/09/14 20:27:54 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/11/25 01:19:05 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	wall_hits(t_game *g)
 {
 	int		screen;
 	int		x;
+	double	degrees;
 	double	wall;
 
 	screen = g->graphics->screen_width;
@@ -62,10 +63,11 @@ void	wall_hits(t_game *g)
 	x = 0;
 	while (x < screen)
 	{
-		if (g->sides[x] == 0) 
-			wall = g->player->loc.y + g->distances[x] * g->ray_dirs[x].y;
+		degrees = atan(g->ray_dirs[x].y / g->ray_dirs[x].x);
+		if (g->sides[x] == 0)
+			wall = g->player->loc.y + g->distances[x] * cos(degrees);
 		else
-			wall = g->player->loc.y + g->distances[x] * g->ray_dirs[x].y;
+			wall = g->player->loc.y + g->distances[x] * sin(degrees);
 		wall -= (int)wall;
 		g->wallhits[x] = wall;
 		x++;
