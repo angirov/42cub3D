@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:22:36 by vangirov          #+#    #+#             */
-/*   Updated: 2022/11/25 01:19:05 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/11/25 01:46:19 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	wall_hits(t_game *g)
 		if (g->sides[x] == 0)
 			wall = g->player->loc.y + g->distances[x] * cos(degrees);
 		else
-			wall = g->player->loc.y + g->distances[x] * sin(degrees);
+			wall = g->player->loc.x + g->distances[x] * sin(degrees);
 		wall -= (int)wall;
 		g->wallhits[x] = wall;
 		x++;
