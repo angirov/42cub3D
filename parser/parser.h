@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 16:57:40 by mokatova          #+#    #+#             */
-/*   Updated: 2022/10/26 13:32:47 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:57:49 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,13 @@ void	clear_list(t_list **list);
 /////map_checker.c
 void	any_wrong_symbols(t_parser *game, char **values);
 void	are_borders_in_place(t_parser *game, char **values);
+void	are_tricky_borders_in_place(t_parser *game, char **values);
 void	any_extra_players(t_parser *game, char **values);
 int		is_valid(char c);
 /////parse_player.c
 void	parse_player(t_parser *game);
 void	assign_direction(t_parser *game, char c);
+int		are_surroundings_ok(char **values, int i, int j);
+int		is_spot_blank(char c);
 
 #endif

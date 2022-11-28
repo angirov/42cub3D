@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:34:43 by mokatova          #+#    #+#             */
-/*   Updated: 2022/10/26 13:42:26 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:57:33 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,34 @@ void	assign_direction(t_parser *game, char c)
 		game->map->player_dir = 180;
 	else if (c == 'S')
 		game->map->player_dir = 270;
+}
+
+int	are_surroundings_ok(char **values, int i, int j)
+{
+	int	i_incr;
+	int	i_decr;
+	int	j_incr;
+	int	j_decr;
+
+	i_incr = i + 1;
+	i_decr = i - 1;
+	j_incr = j + 1;
+	j_decr = j - 1;
+	if (is_spot_blank(values[i_decr][j_decr]) == 1
+		|| is_spot_blank(values[i_decr][j]) == 1
+		|| is_spot_blank(values[i_decr][j_incr]) == 1
+		|| is_spot_blank(values[i][j_decr]) == 1
+		|| is_spot_blank(values[i][j_incr]) == 1
+		|| is_spot_blank(values[i_incr][j_decr]) == 1
+		|| is_spot_blank(values[i_incr][j]) == 1
+		|| is_spot_blank(values[i_incr][j_incr]) == 1)
+		return (1);
+	return (0);
+}
+
+int	is_spot_blank(char c)
+{
+	if (c == ' ' || c == '\0')
+		return (1);
+	return (0);
 }

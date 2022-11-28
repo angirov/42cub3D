@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:14:33 by mokatova          #+#    #+#             */
-/*   Updated: 2022/10/26 13:54:26 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:12:18 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,29 @@ void	are_borders_in_place(t_parser *game, char **values)
 		else if (is_valid(values[game->map->rows - 1][j]) == -1)
 			quit_game(game, MAP_RULES, "There's a problem with map borders");
 		j++;
+	}
+}
+
+void	are_tricky_borders_in_place(t_parser *game, char **values)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game->map->rows)
+	{
+		j = 0;
+		while (j < game->map->columns)
+		{
+			if (values[i][j] == '0' || values[i][j] == 'N'
+				|| values[i][j] == 'W' || values[i][j] == 'S'
+				|| values[i][j] == 'E')
+				if (are_surroundings_ok(values, i, j) == 1)
+					quit_game(game, MAP_RULES,
+						"There's a problem with map borders");
+			j++;
+		}
+		i++;
 	}
 }
 

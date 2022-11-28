@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:13:20 by mokatova          #+#    #+#             */
-/*   Updated: 2022/10/25 20:13:02 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/11/28 15:55:47 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	is_map_ok(t_parser *game)
 {
 	any_wrong_symbols(game, game->map->values);
 	are_borders_in_place(game, game->map->values);
+	are_tricky_borders_in_place(game, game->map->values);
 	any_extra_players(game, game->map->values);
 }
 
