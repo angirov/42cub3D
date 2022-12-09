@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 16:57:40 by mokatova          #+#    #+#             */
-/*   Updated: 2022/11/28 16:57:49 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/09 21:57:57 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@
 # include "../minilibx-linux/mlx_int.h"
 # include "../libft/libft.h"
 
+typedef struct s_color
+{
+	unsigned char	b;
+	unsigned char	g;
+	unsigned char	r;
+	unsigned char	a;
+}	t_color;
+
 typedef struct s_image
 {
 	void	*ptr;
@@ -34,6 +42,7 @@ typedef struct s_image
 	int		endian;
 	int		width;
 	int		height;
+	t_color	***colors;
 }	t_image;
 
 typedef struct s_settings
@@ -64,6 +73,8 @@ typedef struct s_parser
 int		quit_game(t_parser *game, int err_number, char *msg);
 void	clean_n_free(t_parser *game);
 void	free_array(char **argv);
+t_color	*save_pxl_color(t_image *texture, int j, int i);
+t_color	***create_array_of_colors(t_image *texture);
 /////parse.c
 void	parse(t_parser *game, char *file);
 void	colors_n_textures(int fd, t_parser *game, char **line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:05:05 by vangirov          #+#    #+#             */
-/*   Updated: 2022/11/24 18:51:39 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/09 23:29:34 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ typedef struct s_game
 	t_loc		*ray_dirs;
 	double		*distances;
 	int			*sides;
-	double		*wallhits;
+	double		wallhits;
 }	t_game;
 
 void	set_sizes(t_game *game, int width, int heigth, int scale);

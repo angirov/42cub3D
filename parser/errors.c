@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:06:56 by mokatova          #+#    #+#             */
-/*   Updated: 2022/09/30 18:58:52 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/09 21:57:34 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,35 @@ void	free_array(char **argv)
 		free(argv[i++]);
 	free(argv);
 	argv = NULL;
+}
+
+t_color	*save_pxl_color(t_image *texture, int j, int i)
+{
+	int	*color;
+
+	color = (int *)(texture->addr
+			+ (i * texture->llen + j * (texture->bpp / 8)));
+	return ((t_color *)color);
+}
+
+t_color	***create_array_of_colors(t_image *texture)
+{
+	t_color	***array;
+	int		i;
+	int		j;
+
+	array = malloc(sizeof(t_color **) * (texture->height + 1));
+	j = 0;
+	while (j < texture->height)
+	{
+		array[j] = malloc(sizeof(t_color *) * (texture->width + 1));
+		i = 0;
+		while (i < texture->width)
+		{
+			array[j][i] = save_pxl_color(texture, j, i);
+			i++;
+		}
+		j++;
+	}
+	return (array);
 }

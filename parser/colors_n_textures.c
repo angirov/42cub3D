@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:09:46 by mokatova          #+#    #+#             */
-/*   Updated: 2022/10/12 13:55:11 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/09 21:57:15 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int	import_textures(char *line, t_image *texture, t_parser *game)
 		return (-1);
 	texture->addr = mlx_get_data_addr(texture->ptr, &texture->bpp,
 			&texture->llen, &texture->endian);
+	texture->colors = create_array_of_colors(texture);
 	free(tmp);
 	return (0);
 }

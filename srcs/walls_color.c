@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:22:36 by vangirov          #+#    #+#             */
-/*   Updated: 2022/09/15 20:40:22 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/09 20:17:09 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

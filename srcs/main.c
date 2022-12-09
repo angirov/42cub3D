@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:20:19 by vangirov          #+#    #+#             */
-/*   Updated: 2022/11/24 14:23:27 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/09 23:53:48 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-
 void	draw_all(t_game *game)
 {
 	cast_rays(game->player);
-	draw_walls(game);
+	//draw_walls(game);
 	map_background(game);
 	draw_grid(game);
 	draw_rays(game);
@@ -32,15 +31,7 @@ void	call_parser(t_game *g, int argc, char **argv)
 		quit_game(g->parser, WRNG_ARG, NULL);
 	g->parser->mlx = g->graphics->mlx_ptr;
 	parse(g->parser, argv[1]);
-	for (int i = 0; i < g->parser->map->rows; i++) {
-		for (int j = 0; j < g->parser->map->columns; j++) {
-			ft_putchar_fd(g->parser->map->values[i][j], 1);
-		}
-		ft_putchar_fd('\n', 1);
-	}
 	set_sizes(g, g->parser->map->columns, g->parser->map->rows, 20);
-	// quit_game(g->parser, errno);
-
 }
 
 int	main(int argc, char **argv)
