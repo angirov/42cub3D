@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:32:40 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/10 01:28:36 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/11 02:39:36 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	set_ray_dir(t_game *g, t_raycast *rc, int x)
 	camera = 2 * x / (double)rc->screen - 1;
 	ray_dir = add_vecs(rc->dir_vec, sc_mult(rc->plane_vec, camera));
 	g->ray_dirs[x] = ray_dir;
-	// rc->delta.x = sqrt(1 + (g->ray_dirs[x].y * g->ray_dirs[x].y) (g->ray_dirs[x].x * g->ray_dirs[x].x));
-	// rc->delta.y = sqrt(1 + (g->ray_dirs[x].x * g->ray_dirs[x].x) (g->ray_dirs[x].y * g->ray_dirs[x].y));
+	// rc->delta.x = sqrt(1 + (g->ray_dirs[x].y * g->ray_dirs[x].y) / (g->ray_dirs[x].x * g->ray_dirs[x].x));
+	// rc->delta.y = sqrt(1 + (g->ray_dirs[x].x * g->ray_dirs[x].x) / (g->ray_dirs[x].y * g->ray_dirs[x].y));
 	if (g->ray_dirs[x].x == 0)
 		rc->delta.x = 1e30;
 	else
@@ -179,6 +179,32 @@ void	render_textures(t_game *g, t_raycast *rc, int x)
 	}
 }
 
+void	draw_floor_n_ceiling(t_graphics *graphics, t_settings *settings)
+{
+	int	y;
+	int	t;
+
+	y = -1;
+	while (++y < graphics->screen_height - graphics->screen_height * HORISONT)
+	{
+		t = -1;
+		while (++t < graphics->screen_width)
+		{
+			api_put_pixel(graphics, t, graphics->screen_height - y - 1,
+				settings->floor_color);
+		}
+	}
+	while (++y < graphics->screen_height)
+	{
+		t = -1;
+		while (++t < graphics->screen_width)
+		{
+			api_put_pixel(graphics, t, graphics->screen_height - y - 1,
+				settings->ceiling_color);
+		}
+	}
+}
+
 void	cast_rays(t_player *p)
 {
 	t_raycast	rc;
@@ -191,6 +217,7 @@ void	cast_rays(t_player *p)
 	p->game->sides = malloc(sizeof(int) * rc.screen);
 	p->game->ray_dirs = malloc(sizeof(t_loc) * rc.screen);
 	x = 0;
+	draw_floor_n_ceiling(p->game->graphics, p->game->parser->settings);
 	while (x < rc.screen)
 	{
 		rc.map_x = (int)p->loc.x;
