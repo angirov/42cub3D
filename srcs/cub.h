@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:05:05 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/12 19:33:22 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/12 21:15:58 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct s_player
 	t_game	*game;
 	t_loc	loc;
 	double	direction;
-	double	rotation_rate;
+	double	rotation_radian;
 	double	speed;
 }	t_player;
 
@@ -133,18 +133,7 @@ typedef struct s_raycast
 void	set_sizes(t_game *game, int width, int heigth, int scale);
 void	player_set_locdir(t_game *g);
 
-// void	player_move_forward(t_player *player);
-// void	player_move_back(t_player *player);
-// void	player_move_right(t_player *player);
-// void	player_move_left(t_player *player);
-// void	player_turn_right(t_player *player);
-// void	player_turn_left(t_player *player);
-
-void	player_move_N(t_player *player);
-void	player_move_S(t_player *player);
-void	player_move_E(t_player *player);
-void	player_move_W(t_player *player);
-
+void	player_move(t_player *player, int dir_grades);
 void	player_turn_right(t_player *player);
 void	player_turn_left(t_player *player);
 

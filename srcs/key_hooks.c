@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 15:57:53 by vangirov          #+#    #+#             */
-/*   Updated: 2022/09/14 22:08:17 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/12 21:22:38 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,13 @@ void	draw_all(t_game *game);
 int	deal_key(int key, t_game *game)
 {
 	if (key == KEY_LEFT)
-	{
-		player_move_W(game->player);
-		printf("move W\n");
-	}
+		player_move(game->player, 270);
 	if (key == KEY_UP)
-	{
-		player_move_N(game->player);
-		printf("move N\n");
-	}
+		player_move(game->player, 0);
 	if (key == KEY_RIGHT)
-	{
-		player_move_E(game->player);
-		printf("move E\n");
-	}
+		player_move(game->player, 90);
 	if (key == KEY_DOWN)
-	{
-		player_move_S(game->player);
-		printf("move S\n");
-	}
+		player_move(game->player, 180);
 
 	if (key == KEY_Q)
 		player_turn_left(game->player);

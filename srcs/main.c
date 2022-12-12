@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:20:19 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/12 19:32:16 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/12 21:23:09 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	main(int argc, char **argv)
 	game->player = (t_player *)malloc(sizeof(t_player));
 	game->player->game = game;
 	player_set_locdir(game);
-	game->player->speed = 0.355678;
-	game->player->rotation_rate = dtr(15);
+	game->player->speed = 0.2;
+	game->player->rotation_radian = dtr(10);
 
 	draw_all(game);
 	// mlx_hook(data->graphics->win_ptr, 17, 0, ft_destroy, data);
