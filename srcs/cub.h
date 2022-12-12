@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:05:05 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/09 23:29:34 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/12 18:45:17 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,32 @@ typedef struct s_game
 	int			scale;
 	// ===================================
 	t_loc		*ray_dirs;
-	double		*distances;
+	double		*distances_corr;
+	double		*distances_true;
 	int			*sides;
 	double		wallhits;
 }	t_game;
+
+typedef struct s_raycast
+{
+	int		screen;
+	t_loc	dir_vec;
+	t_loc	plane_vec;
+	int		map_x;
+	int		map_y;
+	t_loc	delta_corr;
+	t_loc	delta_true;
+	t_loc	side_dist_corr;
+	t_loc	side_dist_true;
+	int		step_x;
+	int		step_y;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		tex_x;
+	t_color	color;
+	int		pix;
+}	t_raycast;
 
 void	set_sizes(t_game *game, int width, int heigth, int scale);
 void	player_set_locdir(t_game *g);
@@ -136,6 +158,10 @@ double	rtd(double radians);
 double	dtr(double degrees);
 double	ft_abs(double num);
 double	ft_max(double a, double b);
+
+// dist_true.c
+void	set_step_side_dist_true(t_game *g, t_raycast *rc, int x);
+void	set_side_dist_true(t_game *g, t_raycast *rc, int x, int side);
 
 // drawing.c
 void	ft_put_pixel(t_graphics *graphics, int x, int y, int color);

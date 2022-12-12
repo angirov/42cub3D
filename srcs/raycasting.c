@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:32:40 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/11 02:39:36 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:06:35 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-typedef struct s_raycast
-{
-	int		screen;
-	t_loc	dir_vec;
-	t_loc	plane_vec;
-	int		map_x;
-	int		map_y;
-	t_loc	delta;
-	t_loc	side_dist;
-	int		step_x;
-	int		step_y;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		tex_x;
-	t_color	color;
-	int		pix;
-}	t_raycast;
 
 void	set_ray_dir(t_game *g, t_raycast *rc, int x)
 {
@@ -39,19 +20,19 @@ void	set_ray_dir(t_game *g, t_raycast *rc, int x)
 	camera = 2 * x / (double)rc->screen - 1;
 	ray_dir = add_vecs(rc->dir_vec, sc_mult(rc->plane_vec, camera));
 	g->ray_dirs[x] = ray_dir;
-	// rc->delta.x = sqrt(1 + (g->ray_dirs[x].y * g->ray_dirs[x].y) / (g->ray_dirs[x].x * g->ray_dirs[x].x));
-	// rc->delta.y = sqrt(1 + (g->ray_dirs[x].x * g->ray_dirs[x].x) / (g->ray_dirs[x].y * g->ray_dirs[x].y));
+	rc->delta_true.x = sqrt(1 + (g->ray_dirs[x].y * g->ray_dirs[x].y) / (g->ray_dirs[x].x * g->ray_dirs[x].x));
+	rc->delta_true.y = sqrt(1 + (g->ray_dirs[x].x * g->ray_dirs[x].x) / (g->ray_dirs[x].y * g->ray_dirs[x].y));
 	if (g->ray_dirs[x].x == 0)
-		rc->delta.x = 1e30;
+		rc->delta_corr.x = 1e30;
 	else
-		rc->delta.x = fabs(1 / g->ray_dirs[x].x);
+		rc->delta_corr.x = fabs(1 / g->ray_dirs[x].x);
 	if (g->ray_dirs[x].y == 0)
-		rc->delta.y = 1e30;
+		rc->delta_corr.y = 1e30;
 	else
-		rc->delta.y = fabs(1 / g->ray_dirs[x].y);
+		rc->delta_corr.y = fabs(1 / g->ray_dirs[x].y);
 }
 
-void	set_step_side_dist(t_game *g, t_raycast *rc, int x)
+void	set_step_side_dist_corr(t_game *g, t_raycast *rc, int x)
 {
 	int	map_x;
 	int	map_y;
@@ -61,35 +42,35 @@ void	set_step_side_dist(t_game *g, t_raycast *rc, int x)
 	if (g->ray_dirs[x].x < 0)
 	{
 		rc->step_x = -1;
-		rc->side_dist.x = (g->player->loc.x - map_x) * rc->delta.x;
+		rc->side_dist_corr.x = (g->player->loc.x - map_x) * rc->delta_corr.x;
 	}
 	else
 	{
 		rc->step_x = 1;
-		rc->side_dist.x = (map_x + 1.0 - g->player->loc.x) * rc->delta.x;
+		rc->side_dist_corr.x = (map_x + 1.0 - g->player->loc.x) * rc->delta_corr.x;
 	}
 	if (g->ray_dirs[x].y < 0)
 	{
 		rc->step_y = -1;
-		rc->side_dist.y = (g->player->loc.y - map_y) * rc->delta.y;
+		rc->side_dist_corr.y = (g->player->loc.y - map_y) * rc->delta_corr.y;
 	}
 	else
 	{
 		rc->step_y = 1;
-		rc->side_dist.y = (map_y + 1.0 - g->player->loc.y) * rc->delta.y;
+		rc->side_dist_corr.y = (map_y + 1.0 - g->player->loc.y) * rc->delta_corr.y;
 	}
 }
 
-void	set_side_dist(t_game *g, t_raycast *rc, int x, int side)
+void	set_side_dist_corr(t_game *g, t_raycast *rc, int x, int side)
 {
 	if (side == 0)
-		rc->side_dist.x = (rc->side_dist.x - rc->delta.x);
+		rc->side_dist_corr.x = (rc->side_dist_corr.x - rc->delta_corr.x);
 	else
-		rc->side_dist.y = (rc->side_dist.y - rc->delta.y);
-	if (rc->side_dist.x < rc->side_dist.y)
-		g->distances[x] = rc->side_dist.x;
+		rc->side_dist_corr.y = (rc->side_dist_corr.y - rc->delta_corr.y);
+	if (rc->side_dist_corr.x < rc->side_dist_corr.y)
+		g->distances_corr[x] = rc->side_dist_corr.x;
 	else
-		g->distances[x] = rc->side_dist.y;
+		g->distances_corr[x] = rc->side_dist_corr.y;
 }
 
 void	perform_rc(t_game *g, t_raycast *rc, int x)
@@ -99,15 +80,17 @@ void	perform_rc(t_game *g, t_raycast *rc, int x)
 	hit = 0;
 	while (hit == 0)
 	{
-		if (rc->side_dist.x < rc->side_dist.y)
+		if (rc->side_dist_corr.x < rc->side_dist_corr.y)
 		{
-			rc->side_dist.x += rc->delta.x;
+			rc->side_dist_corr.x += rc->delta_corr.x;
+			rc->side_dist_true.x += rc->delta_true.x;
 			rc->map_x += rc->step_x;
 			g->sides[x] = 0;
 		}
 		else
 		{
-			rc->side_dist.y += rc->delta.y;
+			rc->side_dist_corr.y += rc->delta_corr.y;
+			rc->side_dist_true.y += rc->delta_true.y;
 			rc->map_y += rc->step_y;
 			g->sides[x] = 1;
 		}
@@ -130,7 +113,7 @@ void	pick_correct_texture(t_game *game, int x, int *i)
 
 void	calculate_params(t_game *g, t_raycast *rc, int i, int x)
 {
-	rc->line_height = (int)(g->graphics->screen_height / g->distances[x]);
+	rc->line_height = (int)(g->graphics->screen_height / g->distances_corr[x]);
 	rc->draw_start = -rc->line_height / 2
 		+ g->graphics->screen_height * HORISONT;
 	if (rc->draw_start < 0)
@@ -139,9 +122,9 @@ void	calculate_params(t_game *g, t_raycast *rc, int i, int x)
 	if (rc->draw_end >= g->graphics->screen_height)
 		rc->draw_end = g->graphics->screen_height - 1;
 	if (g->sides[x] == 0)
-		g->wallhits = g->player->loc.y + g->distances[x] * g->ray_dirs[x].y;
+		g->wallhits = g->player->loc.y + g->distances_corr[x] * g->ray_dirs[x].y;
 	else
-		g->wallhits = g->player->loc.x + g->distances[x] * g->ray_dirs[x].x;
+		g->wallhits = g->player->loc.x + g->distances_corr[x] * g->ray_dirs[x].x;
 	g->wallhits -= floor(g->wallhits);
 	rc->tex_x = (int)(g->wallhits * g->parser->settings->textures[i].width);
 	if (g->sides[x] == 0 && g->ray_dirs[x].x > 0)
@@ -205,17 +188,23 @@ void	draw_floor_n_ceiling(t_graphics *graphics, t_settings *settings)
 	}
 }
 
+void inits_for_casting(t_player *p, int screen)
+{
+	p->game->distances_corr = malloc(sizeof(double) * screen);
+	p->game->distances_true = malloc(sizeof(double) * screen);
+	p->game->sides = malloc(sizeof(int) * screen);
+	p->game->ray_dirs = malloc(sizeof(t_loc) * screen);
+}
+
 void	cast_rays(t_player *p)
 {
 	t_raycast	rc;
 	int			x;
 
 	rc.screen = p->game->graphics->screen_width;
+	inits_for_casting(p, rc.screen);
 	rc.dir_vec = dir2vec(p->direction);
 	rc.plane_vec = dir2vec(p->direction + dtr(90));
-	p->game->distances = malloc(sizeof(double) * rc.screen);
-	p->game->sides = malloc(sizeof(int) * rc.screen);
-	p->game->ray_dirs = malloc(sizeof(t_loc) * rc.screen);
 	x = 0;
 	draw_floor_n_ceiling(p->game->graphics, p->game->parser->settings);
 	while (x < rc.screen)
@@ -223,9 +212,11 @@ void	cast_rays(t_player *p)
 		rc.map_x = (int)p->loc.x;
 		rc.map_y = (int)p->loc.y;
 		set_ray_dir(p->game, &rc, x);
-		set_step_side_dist(p->game, &rc, x);
+		set_step_side_dist_corr(p->game, &rc, x);
+		set_step_side_dist_true(p->game, &rc, x);
 		perform_rc(p->game, &rc, x);
-		set_side_dist(p->game, &rc, x, p->game->sides[x]);
+		set_side_dist_corr(p->game, &rc, x, p->game->sides[x]);
+		set_side_dist_true(p->game, &rc, x, p->game->sides[x]);
 		render_textures(p->game, &rc, x);
 		x++;
 	}
@@ -236,7 +227,7 @@ void	cast_rays(t_player *p)
 // 	rc->screen = p->game->graphics->screen_width;	//px
 // 	rc->dir_vec = dir2vec(p->direction);
 // 	rc->plane_vec = dir2vec(p->direction + dtr(90));
-// 	p->game->distances = malloc(sizeof(double) * rc->screen);
+// 	p->game->distances_corr = malloc(sizeof(double) * rc->screen);
 // 	p->game->sides = malloc(sizeof(int) * rc->screen);
 // 	p->game->ray_dirs = malloc(sizeof(t_loc) * rc->screen);
 // 	rc->map_x = (int)p->loc.x;

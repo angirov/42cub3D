@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:22:36 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/09 20:17:09 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/12 18:29:41 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	draw_walls(t_game *g)
 	for(int x = 0; x < screen; x++)
 	{
 		h = g->graphics->screen_height;
-		lineHeight = (int)(h / g->distances[x]);
+		lineHeight = (int)(h / g->distances_corr[x]);
 		drawStart = -lineHeight / 2 + h * HORISONT;
 		if(drawStart < 0)
 			drawStart = 0;

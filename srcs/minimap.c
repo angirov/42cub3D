@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:31:21 by vangirov          #+#    #+#             */
-/*   Updated: 2022/11/24 15:06:08 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/12 18:31:26 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_rays(t_game *g)
 
 	for(int x = 0; x < screen; x += screen / 100)
 	{
-		hit_point = sc_mult(norm_vec(g->ray_dirs[x]), g->distances[x]);
+		hit_point = sc_mult(norm_vec(g->ray_dirs[x]), g->distances_true[x]);
 		draw_line(g->player->loc, add_vecs(g->player->loc, hit_point), g->scale, YELLOW, g->graphics);
 	}
 }

@@ -3,6 +3,7 @@ NAME = cub3D
 SRCS_DIR = srcs/
 SRCS_FILES =	main.c \
 				mlx_api/free_mlx.c \
+				dist_true.c \
 				drawing.c \
 				game.c \
 				key_hooks.c \
