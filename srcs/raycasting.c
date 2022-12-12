@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:32:40 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/12 19:06:35 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:30:01 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,6 @@ void	cast_rays(t_player *p)
 	rc.dir_vec = dir2vec(p->direction);
 	rc.plane_vec = dir2vec(p->direction + dtr(90));
 	x = 0;
-	draw_floor_n_ceiling(p->game->graphics, p->game->parser->settings);
 	while (x < rc.screen)
 	{
 		rc.map_x = (int)p->loc.x;

@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:05:05 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/12 18:45:17 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:33:22 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ void	draw_grid(t_game *g);
 bool is_wall(t_game *g, int x, int y);
 
 // raycasting.c
+void	draw_floor_n_ceiling(t_graphics *graphics, t_settings *settings);
 void	cast_rays(t_player	*p);
 void	draw_walls(t_game *g);
 
