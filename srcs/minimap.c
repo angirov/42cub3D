@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:31:21 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/12 18:31:26 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/12 21:32:18 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@ void	draw_rays(t_game *g)
 		draw_line(g->player->loc, add_vecs(g->player->loc, hit_point), g->scale, YELLOW, g->graphics);
 	}
 }
-
-// int	map_value(t_game *g, int x, int y)
-// {
-// 	return (g->map[y * g->grid.width + x]);
-// }
 
 int	map_value(t_game *g, int x, int y)
 {

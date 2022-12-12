@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:32:40 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/12 19:30:01 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/12 21:30:34 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,15 +220,3 @@ void	cast_rays(t_player *p)
 		x++;
 	}
 }
-
-// void	init_raycasting(t_player *p, t_raycast *rc)
-// {
-// 	rc->screen = p->game->graphics->screen_width;	//px
-// 	rc->dir_vec = dir2vec(p->direction);
-// 	rc->plane_vec = dir2vec(p->direction + dtr(90));
-// 	p->game->distances_corr = malloc(sizeof(double) * rc->screen);
-// 	p->game->sides = malloc(sizeof(int) * rc->screen);
-// 	p->game->ray_dirs = malloc(sizeof(t_loc) * rc->screen);
-// 	rc->map_x = (int)p->loc.x;
-// 	rc->map_y = (int)p->loc.y;
-// }
