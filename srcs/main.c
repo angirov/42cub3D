@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:20:19 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/12 21:23:09 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/12 21:38:15 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	call_parser(t_game *g, int argc, char **argv)
 {
 	g->parser = malloc(sizeof(t_parser));
 	*g->parser = (t_parser){0};
-	if (argc != 2)
+	if (argc != 2) // MAYBE check before allocating the parser
 		quit_game(g->parser, WRNG_ARG, NULL);
 	g->parser->mlx = g->graphics->mlx_ptr;
 	parse(g->parser, argv[1]);
@@ -56,5 +56,15 @@ int	main(int argc, char **argv)
 	// mlx_hook(data->graphics->win_ptr, 17, 0, ft_destroy, data);
 	mlx_key_hook(game->graphics->win_ptr, deal_key, game);
 	mlx_loop(game->graphics->mlx_ptr);
+
+	// free(game->graphics);
+	// free(game->parser);
+	// free(game->player);
+	// free(game->distances_corr);
+	// free(game->distances_true);
+	// free(game->sides);
+	// free(game->ray_dirs);
+	// free(game);
+	
 	return (argc);
 }
