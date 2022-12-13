@@ -2,9 +2,9 @@
 
 void api_free_graphics_linux(void *mlx_ptr, void *win_ptr, void *img_prt)
 {
-	// mlx_destroy_image(mlx_ptr, img_prt);
-	// mlx_destroy_window(mlx_ptr, win_ptr);
-	// mlx_destroy_display(mlx_ptr);
+	mlx_destroy_image(mlx_ptr, img_prt);
+	mlx_destroy_window(mlx_ptr, win_ptr);
+	mlx_destroy_display(mlx_ptr);
 }
 
 void api_free_graphics_macos(void *mlx_ptr, void *win_ptr, void *img_prt)
