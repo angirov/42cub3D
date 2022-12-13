@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 15:57:53 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/12 21:22:38 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:57:39 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	draw_all(t_game *game);
 
 int	deal_key(int key, t_game *game)
 {
+	if (key == KEY_ESC)
+		ft_destroy(game);
 	if (key == KEY_LEFT)
 		player_move(game->player, 270);
 	if (key == KEY_UP)
@@ -44,20 +46,14 @@ int	deal_key(int key, t_game *game)
 		player_move(game->player, 90);
 	if (key == KEY_DOWN)
 		player_move(game->player, 180);
-
 	if (key == KEY_Q)
 		player_turn_left(game->player);
 	if (key == KEY_W)
 		player_turn_right(game->player);
-
 	printf("loc: %lf : %lf\n",	game->player->loc.x,
 								game->player->loc.y);
-	// printf("squ: %d : %d\n",	(int)game->player->loc.x,
-	// 							(int)game->player->loc.y);
 	printf("dir: %lf\n", rtd(game->player->direction));
-	
 	ft_clear_image(game->graphics);
 	draw_all(game);
-
 	return (0);
 }

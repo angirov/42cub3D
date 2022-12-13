@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:20:19 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/12 21:38:15 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:43:28 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,9 @@ int	main(int argc, char **argv)
 	game->player->rotation_radian = dtr(10);
 
 	draw_all(game);
-	// mlx_hook(data->graphics->win_ptr, 17, 0, ft_destroy, data);
+	mlx_hook(game->graphics->win_ptr, 17, 0, ft_destroy, game);
 	mlx_key_hook(game->graphics->win_ptr, deal_key, game);
 	mlx_loop(game->graphics->mlx_ptr);
 
-	// free(game->graphics);
-	// free(game->parser);
-	// free(game->player);
-	// free(game->distances_corr);
-	// free(game->distances_true);
-	// free(game->sides);
-	// free(game->ray_dirs);
-	// free(game);
-	
-	return (argc);
+	return (0);
 }

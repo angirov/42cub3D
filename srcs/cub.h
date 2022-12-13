@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:05:05 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/12 21:15:58 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/13 15:15:48 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,10 +176,8 @@ void	draw_walls(t_game *g);
 // key_hooks.c
 int		deal_key(int key, t_game *game);
 
-// exit.c //////////////////////////////////////////////////////
-// void	ft_error(t_fdf *data, char *message);
-// void	ft_escape(t_fdf *data);
-// void	ft_free_data(t_fdf *data);
-// int		ft_destroy(t_fdf *data);
+// exit.c 
+// void	ft_error(t_game *g, char *message);
+int		ft_destroy(t_game *g);
 
 #endif

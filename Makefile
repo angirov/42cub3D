@@ -5,6 +5,7 @@ SRCS_FILES =	main.c \
 				mlx_api/free_mlx.c \
 				dist_true.c \
 				drawing.c \
+				exits_linux.c \
 				game.c \
 				key_hooks.c \
 				math.c \

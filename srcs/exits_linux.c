@@ -6,34 +6,35 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:00:36 by vangirov          #+#    #+#             */
-/*   Updated: 2022/09/13 11:06:30 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/13 15:16:24 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	ft_error(t_fdf *data, char *message)
-{
-	ft_destroy(data);
-	perror(message);
-	exit(1);
-}
+// void	ft_error(t_game *game, char *message)
+// {
+// 	ft_destroy(game);
+// 	perror(message);
+// 	exit(1);
+// }
 
-void	ft_escape(t_fdf *data)
-{
-	ft_destroy(data);
-	exit(0);
-}
+// void	ft_escape(t_game *game)
+// {
+// 	ft_destroy(game);
+// 	exit(0);
+// }
 
-void	ft_free_data(t_fdf *data)
+void	ft_free_game(t_game *game)
 {
-	int	i;
-
-	i = 0;
-	while (i < data->height)
-		free(data->matrix[i++]);
-	free(data->matrix);
-	free(data);
+	free(game->graphics);
+	free(game->parser);
+	free(game->player);
+	free(game->distances_corr);
+	free(game->distances_true);
+	free(game->sides);
+	free(game->ray_dirs);
+	free(game);
 }
 
 // void	ft_free_mlx_linux(void *mlx_ptr, void *win_ptr, void *img_prt)
@@ -49,11 +50,10 @@ void	ft_free_data(t_fdf *data)
 // 	mlx_destroy_window(mlx_ptr, win_ptr);
 // }
 
-int	ft_destroy(t_fdf *data)
+int	ft_destroy(t_game *game)
 {
-	api_free_graphics_linux(data->graphics->mlx_ptr, data->graphics->win_ptr, data->graphics->img_prt);
-	free(data->graphics->mlx_ptr);
-	ft_free_data(data);
-	exit(1);
+	api_free_graphics_linux(game->graphics->mlx_ptr, game->graphics->win_ptr, game->graphics->img_prt);
+	free(game->graphics->mlx_ptr);
+	ft_free_game(game);
+	exit(0);
 }
-
