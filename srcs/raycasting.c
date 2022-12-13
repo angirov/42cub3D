@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:32:40 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/12 21:30:34 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/13 15:23:58 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,21 +188,12 @@ void	draw_floor_n_ceiling(t_graphics *graphics, t_settings *settings)
 	}
 }
 
-void inits_for_casting(t_player *p, int screen)
-{
-	p->game->distances_corr = malloc(sizeof(double) * screen);
-	p->game->distances_true = malloc(sizeof(double) * screen);
-	p->game->sides = malloc(sizeof(int) * screen);
-	p->game->ray_dirs = malloc(sizeof(t_loc) * screen);
-}
-
 void	cast_rays(t_player *p)
 {
 	t_raycast	rc;
 	int			x;
 
 	rc.screen = p->game->graphics->screen_width;
-	inits_for_casting(p, rc.screen);
 	rc.dir_vec = dir2vec(p->direction);
 	rc.plane_vec = dir2vec(p->direction + dtr(90));
 	x = 0;

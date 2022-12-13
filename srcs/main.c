@@ -6,7 +6,7 @@
 /*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:20:19 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/13 14:43:28 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/13 15:27:20 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ void	call_parser(t_game *g, int argc, char **argv)
 	set_sizes(g, g->parser->map->columns, g->parser->map->rows, 20);
 }
 
+
+void inits_for_casting(t_game *game)
+{
+	int screen;
+
+	screen = game->graphics->screen_width;
+	game->distances_corr = malloc(sizeof(double) * screen);
+	game->distances_true = malloc(sizeof(double) * screen);
+	game->sides = malloc(sizeof(int) * screen);
+	game->ray_dirs = malloc(sizeof(t_loc) * screen);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	*game;
@@ -42,7 +54,7 @@ int	main(int argc, char **argv)
 	// Init game
 	game = (t_game *)malloc(sizeof(t_game));
 	game->graphics = api_init_graphics(1600, 800, TITLE);
-
+	inits_for_casting(game);
 	call_parser(game, argc, argv);
 
 	// Init player
