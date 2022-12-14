@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 15:57:53 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/13 14:57:39 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/15 02:02:16 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
 
 void	ft_clear_image(t_graphics *graphics)
 {
@@ -31,7 +30,7 @@ void	ft_clear_image(t_graphics *graphics)
 	}
 }
 
-void draw_player(t_player *player);
+void	draw_player(t_player *player);
 void	draw_all(t_game *game);
 
 int	deal_key(int key, t_game *game)
@@ -50,8 +49,8 @@ int	deal_key(int key, t_game *game)
 		player_turn_left(game->player);
 	if (key == KEY_W)
 		player_turn_right(game->player);
-	printf("loc: %lf : %lf\n",	game->player->loc.x,
-								game->player->loc.y);
+	printf("loc: %lf : %lf\n", game->player->loc.x,
+		game->player->loc.y);
 	printf("dir: %lf\n", rtd(game->player->direction));
 	ft_clear_image(game->graphics);
 	draw_all(game);

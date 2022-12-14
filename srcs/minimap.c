@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:31:21 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/12 21:32:18 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/15 02:06:31 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 void	draw_rays(t_game *g)
 {
 	t_loc	hit_point;
-	int		screen = g->graphics->screen_width;	//px
+	int		screen;
+	int		x;
 
-	for(int x = 0; x < screen; x += screen / 100)
+	screen = g->graphics->screen_width;
+	x = 0;
+	while (x < screen)
 	{
 		hit_point = sc_mult(norm_vec(g->ray_dirs[x]), g->distances_true[x]);
-		draw_line(g->player->loc, add_vecs(g->player->loc, hit_point), g->scale, YELLOW, g->graphics);
+		draw_line(g->player->loc, add_vecs(g->player->loc, hit_point),
+			g->scale, YELLOW, g->graphics);
+		x += screen / 100;
 	}
 }
 
 int	map_value(t_game *g, int x, int y)
 {
 	return (g->parser->map->values[y][x]);
-}
-
-bool is_wall(t_game *g, int x, int y)
-{
-	return (ft_strchr("1  ", map_value(g, x, y)));
 }
 
 void	fill_grid(t_game *g, int x, int y, int scale)
@@ -61,10 +61,12 @@ void	draw_grid(t_game *g)
 		{
 			if (x < g->parser->map->columns)
 			{
-				draw_line((t_loc){x, y}, (t_loc){x + 1, y}, s, GRAY, g->graphics);
+				draw_line((t_loc){x, y}, (t_loc){x + 1, y},
+					s, GRAY, g->graphics);
 			}
 			if (y <= g->parser->map->rows)
-				draw_line((t_loc){x, y}, (t_loc){x, y + 1}, s, GRAY, g->graphics);
+				draw_line((t_loc){x, y}, (t_loc){x, y + 1},
+					s, GRAY, g->graphics);
 			fill_grid(g, x, y, s);
 			x++;
 		}

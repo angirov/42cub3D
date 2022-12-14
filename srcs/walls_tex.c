@@ -3,50 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   walls_tex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:22:36 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/12 21:30:17 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/15 02:06:44 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-enum dirs {N, S, E, W};
+enum e_dirs {n, s, e, w};
 
 int	side_dir(t_loc ray_dir, int side)
 {
-	enum dirs dir;
+	enum e_dirs	dir;
+
 	if (side == 1)
 	{
 		if (ray_dir.y >= 0)
-			dir = S;
+			dir = s;
 		else
-			dir = N;
+			dir = n;
 	}
 	else
 	{
 		if (ray_dir.x >= 0)
-			dir = E;
+			dir = e;
 		else
-			dir = W;
+			dir = w;
 	}
-	return dir;
+	return (dir);
 }
 
 int	my_set_color(t_loc ray_dir, int side)
 {
-	enum dirs	dir;
+	enum e_dirs	dir;
 	int			color;
 
 	dir = side_dir(ray_dir, side);
-	if (dir == N)
+	if (dir == n)
 		color = RED;
-	else if (dir == S)
+	else if (dir == s)
 		color = WHITE;
-	else if (dir == E)
+	else if (dir == e)
 		color = YELLOW;
-	else if (dir == W)
+	else if (dir == w)
 		color = GRAY;
 	return (color);
+}
+
+bool	is_wall(t_game *g, int x, int y)
+{
+	return (ft_strchr("1  ", map_value(g, x, y)));
 }

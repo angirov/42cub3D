@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/15 02:02:26 by mokatova          #+#    #+#             */
+/*   Updated: 2022/12/15 02:02:54 by mokatova         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub.h"
 
 void	player_set_locdir(t_game *g)
@@ -17,7 +29,6 @@ void	player_turn_left(t_player *player)
 	player->direction -= player->rotation_radian;
 }
 
-
 void	set_sizes(t_game *game, int grid_width, int grid_heigth, int scale)
 {
 	game->parser->map->columns = grid_width;
@@ -29,14 +40,14 @@ void	set_sizes(t_game *game, int grid_width, int grid_heigth, int scale)
 
 void	player_move(t_player *p, int dir_grades)
 {
-	t_loc new_loc;
-	t_loc dir_vec;
+	t_loc	new_loc;
+	t_loc	dir_vec;
 
 	dir_vec = dir2vec(p->direction + dtr(dir_grades));
 	new_loc = add_vecs(p->loc, sc_mult(dir_vec, p->speed));
 	if (is_wall(p->game, (int)new_loc.x, (int)new_loc.y))
 	{
-		printf("collision N\n"); ////////////////////////////////////
+		printf("collision N\n");
 	}
 	else
 		p->loc = new_loc;

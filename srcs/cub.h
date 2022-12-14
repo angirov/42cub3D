@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:05:05 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/13 15:15:48 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/15 02:07:28 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,16 +162,20 @@ void	fill_rect(t_game *g, t_loc corner, int x, int y, int color);
 
 // minimap.c
 void	draw_rays(t_game *g);
-int map_value(t_game *g, int x, int y);
+int		map_value(t_game *g, int x, int y);
 void	fill_grid(t_game *g, int x, int y, int scale);
 void	map_background(t_game *g);
 void	draw_grid(t_game *g);
-bool is_wall(t_game *g, int x, int y);
 
 // raycasting.c
-void	draw_floor_n_ceiling(t_graphics *graphics, t_settings *settings);
 void	cast_rays(t_player	*p);
 void	draw_walls(t_game *g);
+
+// raycasting_utils.c
+void	draw_floor_n_ceiling(t_graphics *graphics, t_settings *settings);
+void	calculate_params(t_game *g, t_raycast *rc, int i, int x);
+void	pick_correct_texture(t_game *game, int x, int *i);
+void	render_textures(t_game *g, t_raycast *rc, int x);
 
 // key_hooks.c
 int		deal_key(int key, t_game *game);
@@ -179,5 +183,8 @@ int		deal_key(int key, t_game *game);
 // exit.c 
 // void	ft_error(t_game *g, char *message);
 int		ft_destroy(t_game *g);
+
+// wall_tex.c
+bool	is_wall(t_game *g, int x, int y);
 
 #endif

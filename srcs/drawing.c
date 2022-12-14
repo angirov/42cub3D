@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:23:34 by vangirov          #+#    #+#             */
-/*   Updated: 2022/09/14 22:00:41 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/15 02:11:15 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,24 @@ void	ft_plot_line(t_point p0, t_point p1, int color, t_graphics *g)
 
 void	fill_sqare(t_game *g, t_loc corner, int side, int color)
 {
-	int corner_x;
-	int corner_y;
+	int	corner_x;
+	int	corner_y;
+	int	i;
+	int	j;
 
 	corner_x = corner.x * g->scale;
 	corner_y = corner.y * g->scale;
-	
-	for (int i = 0; i < side*g->scale; i++)
-		for (int j = 0; j < side*g->scale; j++)
+	i = 0;
+	while (i < side * g->scale)
+	{
+		j = 0;
+		while (j < side * g->scale)
+		{
 			api_put_pixel(g->graphics, corner_x + i, corner_y + j, color);
+			j++;
+		}
+		i++;
+	}
 }
 
 void	fill_rect(t_game *g, t_loc corner, int x, int y, int color)
