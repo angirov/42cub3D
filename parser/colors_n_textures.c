@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:09:46 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/09 21:57:15 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 01:36:50 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	are_colors_valid(char **colors, int *rgb)
 	rgb[0] = cub_atoi(colors[0]);
 	rgb[1] = cub_atoi(colors[1]);
 	rgb[2] = cub_atoi(colors[2]);
-
 	if (rgb[0] > 255 || rgb[1] > 255 || rgb[2] > 255
 		|| rgb[0] < 0 || rgb[1] < 0 || rgb[2] < 0)
 		return (-1);
