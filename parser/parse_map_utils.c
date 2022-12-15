@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:13:20 by mokatova          #+#    #+#             */
-/*   Updated: 2022/11/28 15:55:47 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 21:48:37 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,19 @@ void	malloc_map(t_parser *game)
 	int	i;
 
 	i = 0;
-	game->map->values = malloc(sizeof(char *) * game->map->rows);
+	game->map->values = malloc(sizeof(char *) * (game->map->rows + 1));
 	if (!game->map->values)
 		quit_game(game, errno,
 			"Error with memory allocation for values of the map");
 	while (i < game->map->rows)
 	{
-		game->map->values[i] = malloc(sizeof(char) * game->map->columns);
+		game->map->values[i] = malloc(sizeof(char) * (game->map->columns + 1));
 		if (!game->map->values[i])
 			quit_game(game, errno,
 				"Error with memory allocation for values of the map");
 		i++;
 	}
+	game->map->values[i] = NULL;
 }
 
 void	assign_values(t_parser *game, t_list *list)

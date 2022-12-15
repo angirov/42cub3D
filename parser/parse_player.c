@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:34:43 by mokatova          #+#    #+#             */
-/*   Updated: 2022/11/28 16:57:33 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 22:33:17 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,15 @@ int	is_spot_blank(char c)
 	if (c == ' ' || c == '\0')
 		return (1);
 	return (0);
+}
+
+void	free_array(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+		free(argv[i++]);
+	free(argv);
+	argv = NULL;
 }

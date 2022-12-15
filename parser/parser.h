@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 16:57:40 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/09 21:57:57 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 22:33:41 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@
 # include <errno.h>
 # include <string.h>
 # include <stdio.h>
-
-# include "../minilibx-linux/mlx.h"
-# include "../minilibx-linux/mlx_int.h"
 # include "../libft/libft.h"
+
+# if __linux__
+#  include "../minilibx-linux/mlx.h"
+#  include "../minilibx-linux/mlx_int.h"
+# else
+#  include "../minilibx_mac/mlx.h"
+# endif
 
 typedef struct s_color
 {
@@ -72,7 +76,6 @@ typedef struct s_parser
 /////errors.c
 int		quit_game(t_parser *game, int err_number, char *msg);
 void	clean_n_free(t_parser *game);
-void	free_array(char **argv);
 t_color	*save_pxl_color(t_image *texture, int j, int i);
 t_color	***create_array_of_colors(t_image *texture);
 /////parse.c
@@ -103,5 +106,6 @@ void	parse_player(t_parser *game);
 void	assign_direction(t_parser *game, char c);
 int		are_surroundings_ok(char **values, int i, int j);
 int		is_spot_blank(char c);
+void	free_array(char **argv);
 
 #endif

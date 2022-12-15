@@ -37,13 +37,26 @@ LIBFT_A = $(LIBFT_DIR)/libft.a
 
 ALL_LIBS = $(LIBFT_A)
 
-MLX_PATH	=	minilibx-linux
-MLX_LIB		=	mlx_Linux
+ifeq ($(shell uname), Linux)
+	MLX_PATH	=	minilibx-linux
+	MLX_LIB		=	mlx_Linux
+else
+	MLX_PATH	=	minilibx_mac
+	MLX_LIB		=	mlx
+endif
+
+#MLX_PATH	=	minilibx-linux
+#MLX_LIB		=	mlx_Linux
 
 # ========== compilation ==========
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Wno-unused-parameter
-MLX_FLAFS = -L/usr/lib -lXext -lX11 -lm -lz
+ifeq ($(shell uname), Linux)
+	MLX_FLAFS = -L/usr/lib -lXext -lX11 -lm -lz
+else
+	MLX_FLAFS = -framework OpenGL -framework AppKit -lz
+endif
+
 MODULES = 	mlx_api \
 			game
 MODULES_DIRS = $(addprefix $(SRCS_DIR), $(MODULES))
@@ -58,9 +71,9 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make -C $(LIBFT_DIR)
 	make -C $(MLX_PATH)
-	$(CC) $(OBJ) $(INCLUDES_LOCAL) $(ALL_LIBS) $(HEADERS) -L$(MLX_PATH) -l$(MLX_LIB) $(MLX_FLAFS) -o $(NAME)
+	$(CC) $(OBJ) $(INCLUDES_LOCAL) $(ALL_LIBS) -L$(MLX_PATH) -l$(MLX_LIB) $(MLX_FLAFS) -o $(NAME)
 
-%.o: %.c $(HEADERS) # makelibs
+%.o: %.c #$(HEADERS) makelibs
 	$(CC) $(CFLAGS) $(INCLUDES_LOCAL) -I/usr/include -c $< -o $@ 
 
 #makelibs:

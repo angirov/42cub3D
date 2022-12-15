@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:06:56 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/09 21:57:34 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 22:33:11 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	quit_game(t_parser *game, int err_number, char *msg)
 		clean_n_free(game);
 	exit(err_number);
 }
+
+#if __linux__
 
 void	clean_n_free(t_parser *game)
 {
@@ -59,16 +61,36 @@ void	clean_n_free(t_parser *game)
 	}
 }
 
-void	free_array(char **argv)
+#else
+
+void	clean_n_free(t_parser *game)
 {
 	int	i;
 
+	if (game->map)
+	{
+		if (game->map->values)
+			free_array(game->map->values);
+		free(game->map);
+	}
 	i = 0;
-	while (argv[i])
-		free(argv[i++]);
-	free(argv);
-	argv = NULL;
+	if (game->settings)
+	{
+		while (i < 4)
+		{
+			if (game->settings->textures[i].ptr)
+				mlx_destroy_image(game->mlx, game->settings->textures[i].ptr);
+			i++;
+		}
+		free(game->settings);
+	}
+	if (game->mlx)
+	{
+		free(game->mlx);
+	}
 }
+
+#endif
 
 t_color	*save_pxl_color(t_image *texture, int j, int i)
 {

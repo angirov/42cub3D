@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:00:36 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 16:16:20 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 21:08:17 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_free_game(t_game *game)
 int	ft_destroy(t_game *game)
 {
 	quit_game(game->parser, 0, "");
-	api_free_graphics_linux(game->graphics->mlx_ptr,
+	api_free_graphics(game->graphics->mlx_ptr,
 		game->graphics->win_ptr, game->graphics->img_prt);
 	free(game->graphics->mlx_ptr);
 	ft_free_game(game);

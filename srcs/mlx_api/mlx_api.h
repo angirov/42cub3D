@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 16:08:22 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/15 16:09:03 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 21:09:08 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@
 
 # elif defined(__APPLE__)
 #  include <stdlib.h>
-#  include "../libs/minilibx_macos/mlx.h"
-#  include "../libs/libft/libft.h"
+#  include "../minilibx_mac/mlx.h"
+#  include "../libft/libft.h"
 
 #  define KEY_ESC 53
 #  define KEY_LEFT 123
@@ -84,9 +84,7 @@ t_graphics	*api_init_graphics(int widht, int height, char *title);
 
 void		api_put_pixel(t_graphics *data, int x, int y, int color);
 
-void		api_free_graphics_linux(void *mlx_ptr,
-				void *win_ptr, void *img_prt);
-void		api_free_graphics_macos(void *mlx_ptr,
+void		api_free_graphics(void *mlx_ptr,
 				void *win_ptr, void *img_prt);
 
 #endif

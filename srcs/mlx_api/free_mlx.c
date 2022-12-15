@@ -6,25 +6,30 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 16:10:19 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/15 16:10:47 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 21:07:52 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_api.h"
 
-void	api_free_graphics_linux(void *mlx_ptr, void *win_ptr, void *img_prt)
+#if __linux__
+
+void	api_free_graphics(void *mlx_ptr, void *win_ptr, void *img_prt)
 {
 	mlx_destroy_image(mlx_ptr, img_prt);
 	mlx_destroy_window(mlx_ptr, win_ptr);
 	mlx_destroy_display(mlx_ptr);
 }
 
-void	api_free_graphics_macos(void *mlx_ptr, void *win_ptr, void *img_prt)
+#else
+
+void	api_free_graphics(void *mlx_ptr, void *win_ptr, void *img_prt)
 {
 	mlx_destroy_image(mlx_ptr, img_prt);
 	mlx_destroy_window(mlx_ptr, win_ptr);
 }
 
+#endif
 ///////////////////////////////////////////////////////////
 
 void	api_put_pixel(t_graphics *api_data, int x, int y, int color)

@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:14:33 by mokatova          #+#    #+#             */
-/*   Updated: 2022/11/28 16:12:18 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 22:30:25 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ void	are_borders_in_place(t_parser *game, char **values)
 		j = 0;
 		while (values[i][j] == ' ')
 			j++;
-		if (values[i][j] != '1' && values[i][j] != '\n' && values[i][j] != '\0')
-			quit_game(game, MAP_RULES, "There's a problem with map borders");
-		else if (values[i][ft_strlen(values[i]) - 1] != '1'
+		if ((values[i][j] != '1' && values[i][j] != '\0')
+			|| (values[i][ft_strlen(values[i]) - 1] != '1'
 				&& values[i][ft_strlen(values[i]) - 1] != '\n'
-				&& values[i][ft_strlen(values[i]) - 1] != '\0')
+				&& values[i][ft_strlen(values[i]) - 1] != '\0'))
 			quit_game(game, MAP_RULES, "There's a problem with map borders");
 	}
 	j = 0;
-	while (j < game->map->columns)
+	while (j < game->map->columns && values[0][j]
+		&& values[game->map->rows - 1][j])
 	{
 		if (is_valid(values[0][j]) == -1)
 			quit_game(game, MAP_RULES, "There's a problem with map borders");
