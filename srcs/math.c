@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:18:52 by vangirov          #+#    #+#             */
-/*   Updated: 2022/09/13 11:06:30 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:36:57 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ double	vec_len(t_loc vec)
 
 t_loc	norm_vec(t_loc vec)
 {
-	double len;
-	
+	double	len;
+
 	len = vec_len(vec);
-	return ((t_loc){ vec.x / len, vec.y / len });
+	return ((t_loc){vec.x / len, vec.y / len});
 }
 
 t_loc	dir2vec(double radians)
@@ -50,29 +50,4 @@ t_loc	sc_mult(t_loc vec, double scalar)
 	res.x = vec.x * scalar;
 	res.y = vec.y * scalar;
 	return (res);
-}
-
-double	rtd(double radians)
-{
-	return (radians * 180 / M_PI);
-}
-
-double	dtr(double degrees)
-{
-	return (degrees / 180 * M_PI);
-}
-
-double ft_abs(double num)
-{
-	if (num >= 0)
-		return (num);
-	else
-		return (-num);
-}
-
-double	ft_max(double a, double b)
-{
-	if (a > b)
-		return (a);
-	return (b);
 }

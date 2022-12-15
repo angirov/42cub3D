@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:05:05 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 02:07:28 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:44:03 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_loc
 {
 	double	x;
 	double	y;
-} t_loc;
+}	t_loc;
 
 typedef struct s_player
 {
@@ -98,10 +98,8 @@ typedef struct s_game
 	t_parser	*parser;
 	int			px_width;
 	int			px_heigth;
-	// ===================================
-	char		*map; //(*map)[24];  // https://stackoverflow.com/questions/1052818
+	char		*map;
 	int			scale;
-	// ===================================
 	t_loc		*ray_dirs;
 	double		*distances_corr;
 	double		*distances_true;
@@ -143,6 +141,8 @@ t_loc	norm_vec(t_loc vec);
 t_loc	dir2vec(double radians);
 t_loc	add_vecs(t_loc vec1, t_loc vec2);
 t_loc	sc_mult(t_loc vec, double scalar);
+
+// math2.c
 double	rtd(double radians);
 double	dtr(double degrees);
 double	ft_abs(double num);
@@ -153,7 +153,6 @@ void	set_step_side_dist_true(t_game *g, t_raycast *rc, int x);
 void	set_side_dist_true(t_game *g, t_raycast *rc, int x, int side);
 
 // drawing.c
-void	ft_put_pixel(t_graphics *graphics, int x, int y, int color);
 void	draw_line(t_loc l0, t_loc l1, int scale, int color, t_graphics *g);
 void	ft_plot_f_line(t_fpoint p0, t_fpoint p1, int color, t_graphics *g);
 void	ft_plot_line(t_point p0, t_point p1, int color, t_graphics *g);
@@ -184,7 +183,8 @@ int		deal_key(int key, t_game *game);
 // void	ft_error(t_game *g, char *message);
 int		ft_destroy(t_game *g);
 
-// wall_tex.c
+// walls_tex.c
 bool	is_wall(t_game *g, int x, int y);
+void	ft_put_pixel(t_graphics *graphics, int x, int y, int color);
 
 #endif

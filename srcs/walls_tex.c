@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:22:36 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 02:06:44 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:43:48 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,9 @@ int	my_set_color(t_loc ray_dir, int side)
 bool	is_wall(t_game *g, int x, int y)
 {
 	return (ft_strchr("1  ", map_value(g, x, y)));
+}
+
+void	ft_put_pixel(t_graphics *graphics, int x, int y, int color)
+{
+	api_put_pixel(graphics, x, y, color);
 }

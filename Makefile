@@ -12,7 +12,8 @@ SRCS_FILES =	main.c \
 				minimap.c \
 				raycasting.c \
 				walls_tex.c \
-				raycasting_utils.c
+				raycasting_utils.c \
+				math2.c
 
 PARSER_FILES =	parser/colors_n_textures.c \
 				parser/errors.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exits_linux.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:00:36 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/13 15:44:42 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:16:20 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	ft_free_game(t_game *game)
 int	ft_destroy(t_game *game)
 {
 	quit_game(game->parser, 0, "");
-	api_free_graphics_linux(game->graphics->mlx_ptr, game->graphics->win_ptr, game->graphics->img_prt);
+	api_free_graphics_linux(game->graphics->mlx_ptr,
+		game->graphics->win_ptr, game->graphics->img_prt);
 	free(game->graphics->mlx_ptr);
 	ft_free_game(game);
 	exit(0);

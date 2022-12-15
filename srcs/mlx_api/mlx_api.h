@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mlx_api.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/15 16:08:22 by mokatova          #+#    #+#             */
+/*   Updated: 2022/12/15 16:09:03 by mokatova         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MLX_API_H
 # define MLX_API_H
 
 # if defined(__linux__)
 // #  include "libft.h"
-# include "../minilibx-linux/mlx.h"
-# include "../minilibx-linux/mlx_int.h"
-# include "../libft/libft.h"
+#  include "../minilibx-linux/mlx.h"
+#  include "../minilibx-linux/mlx_int.h"
+#  include "../libft/libft.h"
 
 #  include <stdlib.h>
 // #  include <mlx.h>
@@ -72,7 +84,9 @@ t_graphics	*api_init_graphics(int widht, int height, char *title);
 
 void		api_put_pixel(t_graphics *data, int x, int y, int color);
 
-void		api_free_graphics_linux(void *mlx_ptr, void *win_ptr, void *img_prt);
-void		api_free_graphics_macos(void *mlx_ptr, void *win_ptr, void *img_prt);
+void		api_free_graphics_linux(void *mlx_ptr,
+				void *win_ptr, void *img_prt);
+void		api_free_graphics_macos(void *mlx_ptr,
+				void *win_ptr, void *img_prt);
 
 #endif

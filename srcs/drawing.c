@@ -6,18 +6,13 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:23:34 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 02:11:15 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:43:42 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
 // Here all rastarization functions are collected
-
-void	ft_put_pixel(t_graphics *graphics, int x, int y, int color)
-{
-	api_put_pixel(graphics, x, y, color);
-}
 
 void	draw_line(t_loc l0, t_loc l1, int scale, int color, t_graphics *g)
 {
@@ -90,13 +85,22 @@ void	fill_sqare(t_game *g, t_loc corner, int side, int color)
 
 void	fill_rect(t_game *g, t_loc corner, int x, int y, int color)
 {
-	int corner_x;
-	int corner_y;
+	int	corner_x;
+	int	corner_y;
+	int	i;
+	int	j;
 
 	corner_x = corner.x * g->scale;
 	corner_y = corner.y * g->scale;
-	
-	for (int i = 0; i < y*g->scale; i++)
-		for (int j = 0; j < x*g->scale; j++)
+	i = 0;
+	while (i < y * g->scale)
+	{
+		j = 0;
+		while (j < x * g->scale)
+		{
 			api_put_pixel(g->graphics, corner_x + i, corner_y + j, color);
+			j++;
+		}
+		i++;
+	}
 }

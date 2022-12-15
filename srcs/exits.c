@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:00:36 by vangirov          #+#    #+#             */
-/*   Updated: 2022/09/13 11:06:30 by vangirov         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:40:50 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	ft_free_data(t_fdf *data)
 
 int	ft_destroy(t_fdf *data)
 {
-	api_free_graphics_macos(data->graphics->mlx_ptr, data->graphics->win_ptr, data->graphics->img_prt);
+	api_free_graphics_macos(data->graphics->mlx_ptr,
+		data->graphics->win_ptr, data->graphics->img_prt);
 	free(data->graphics->mlx_ptr);
 	ft_free_data(data);
 	exit(1);

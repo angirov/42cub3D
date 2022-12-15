@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:32:40 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 02:01:27 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:14:05 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,29 @@ void	set_ray_dir(t_game *g, t_raycast *rc, int x)
 
 void	set_step_side_dist_corr(t_game *g, t_raycast *rc, int x)
 {
-	int	map_x;
-	int	map_y;
-
-	map_x = rc->map_x;
-	map_y = rc->map_y;
 	if (g->ray_dirs[x].x < 0)
 	{
 		rc->step_x = -1;
-		rc->side_dist_corr.x = (g->player->loc.x - map_x) * rc->delta_corr.x;
+		rc->side_dist_corr.x = (g->player->loc.x - rc->map_x)
+			* rc->delta_corr.x;
 	}
 	else
 	{
 		rc->step_x = 1;
-		rc->side_dist_corr.x = (map_x + 1.0 - g->player->loc.x) * rc->delta_corr.x;
+		rc->side_dist_corr.x = (rc->map_x + 1.0 - g->player->loc.x)
+			* rc->delta_corr.x;
 	}
 	if (g->ray_dirs[x].y < 0)
 	{
 		rc->step_y = -1;
-		rc->side_dist_corr.y = (g->player->loc.y - map_y) * rc->delta_corr.y;
+		rc->side_dist_corr.y = (g->player->loc.y - rc->map_y)
+			* rc->delta_corr.y;
 	}
 	else
 	{
 		rc->step_y = 1;
-		rc->side_dist_corr.y = (map_y + 1.0 - g->player->loc.y) * rc->delta_corr.y;
+		rc->side_dist_corr.y = (rc->map_y + 1.0 - g->player->loc.y)
+			* rc->delta_corr.y;
 	}
 }
 
