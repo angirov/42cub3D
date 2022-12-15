@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:20:19 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 01:52:27 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/16 00:09:58 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	draw_all(t_game *game)
 
 void	call_parser(t_game *g, int argc, char **argv)
 {
-	if (argc != 2)
-		quit_game(g->parser, WRNG_ARG, NULL);
 	g->parser = malloc(sizeof(t_parser));
 	*g->parser = (t_parser){0};
 	g->parser->mlx = g->graphics->mlx_ptr;
@@ -47,8 +45,10 @@ void	inits_for_casting(t_game *game)
 
 int	main(int argc, char **argv)
 {
-	t_game	*game;
+	t_game		*game;
 
+	if (argc != 2)
+		quit_game(NULL, WRNG_ARG, NULL);
 	game = (t_game *)malloc(sizeof(t_game));
 	game->graphics = api_init_graphics(1600, 800, TITLE);
 	inits_for_casting(game);

@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:00:36 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 21:08:17 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/16 00:15:07 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,13 @@ void	ft_free_game(t_game *game)
 
 int	ft_destroy(t_game *game)
 {
-	quit_game(game->parser, 0, "");
+	if (game->parser->map)
+	{
+		if (game->parser->map->values)
+			free_array(game->parser->map->values);
+		free(game->parser->map);
+	}
+	free_settings(game->parser);
 	api_free_graphics(game->graphics->mlx_ptr,
 		game->graphics->win_ptr, game->graphics->img_prt);
 	free(game->graphics->mlx_ptr);

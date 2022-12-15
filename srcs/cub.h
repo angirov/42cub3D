@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:05:05 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 19:05:11 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 23:50:22 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,8 +179,8 @@ void	render_textures(t_game *g, t_raycast *rc, int x);
 // key_hooks.c
 int		deal_key(int key, t_game *game);
 
-// exit.c 
-// void	ft_error(t_game *g, char *message);
+// exit_linux.c 
+void	ft_free_game(t_game *game);
 int		ft_destroy(t_game *g);
 
 // walls_tex.c
