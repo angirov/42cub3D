@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:06:56 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/15 22:33:11 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 23:01:51 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,13 @@ int	quit_game(t_parser *game, int err_number, char *msg)
 
 void	clean_n_free(t_parser *game)
 {
-	int	i;
-
 	if (game->map)
 	{
 		if (game->map->values)
 			free_array(game->map->values);
 		free(game->map);
 	}
-	i = 0;
-	if (game->settings)
-	{
-		while (i < 4)
-		{
-			if (game->settings->textures[i].ptr)
-				mlx_destroy_image(game->mlx, game->settings->textures[i].ptr);
-			i++;
-		}
-		free(game->settings);
-	}
+	free_settings(game);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
@@ -65,25 +53,13 @@ void	clean_n_free(t_parser *game)
 
 void	clean_n_free(t_parser *game)
 {
-	int	i;
-
 	if (game->map)
 	{
 		if (game->map->values)
 			free_array(game->map->values);
 		free(game->map);
 	}
-	i = 0;
-	if (game->settings)
-	{
-		while (i < 4)
-		{
-			if (game->settings->textures[i].ptr)
-				mlx_destroy_image(game->mlx, game->settings->textures[i].ptr);
-			i++;
-		}
-		free(game->settings);
-	}
+	free_settings(game);
 	if (game->mlx)
 	{
 		free(game->mlx);

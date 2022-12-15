@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 16:57:40 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/15 22:33:41 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 23:00:48 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,8 @@ void	assign_direction(t_parser *game, char c);
 int		are_surroundings_ok(char **values, int i, int j);
 int		is_spot_blank(char c);
 void	free_array(char **argv);
+/////free_utils.c
+void	free_colors(t_parser *game, int i);
+void	free_settings(t_parser *game);
 
 #endif
