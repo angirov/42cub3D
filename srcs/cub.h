@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:05:05 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 16:44:03 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 19:05:11 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,11 +153,11 @@ void	set_step_side_dist_true(t_game *g, t_raycast *rc, int x);
 void	set_side_dist_true(t_game *g, t_raycast *rc, int x, int side);
 
 // drawing.c
-void	draw_line(t_loc l0, t_loc l1, int scale, int color, t_graphics *g);
+void	draw_line(t_loc l0, t_loc l1, int color, t_game *g);
 void	ft_plot_f_line(t_fpoint p0, t_fpoint p1, int color, t_graphics *g);
 void	ft_plot_line(t_point p0, t_point p1, int color, t_graphics *g);
 void	fill_sqare(t_game *g, t_loc corner, int side, int color);
-void	fill_rect(t_game *g, t_loc corner, int x, int y, int color);
+void	fill_rect(t_game *g, t_loc corner, int x, int y);
 
 // minimap.c
 void	draw_rays(t_game *g);

@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 01:53:35 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/15 02:01:36 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 18:43:10 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ void	calculate_params(t_game *g, t_raycast *rc, int i, int x)
 	if (rc->draw_end >= g->graphics->screen_height)
 		rc->draw_end = g->graphics->screen_height - 1;
 	if (g->sides[x] == 0)
-		g->wallhits = g->player->loc.y + g->distances_corr[x] * g->ray_dirs[x].y;
+		g->wallhits = g->player->loc.y + g->distances_corr[x]
+			* g->ray_dirs[x].y;
 	else
-		g->wallhits = g->player->loc.x + g->distances_corr[x] * g->ray_dirs[x].x;
+		g->wallhits = g->player->loc.x + g->distances_corr[x]
+			* g->ray_dirs[x].x;
 	g->wallhits -= floor(g->wallhits);
 	rc->tex_x = (int)(g->wallhits * g->parser->settings->textures[i].width);
 	if (g->sides[x] == 0 && g->ray_dirs[x].x > 0)

@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:31:21 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 02:06:31 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 19:04:37 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_rays(t_game *g)
 	{
 		hit_point = sc_mult(norm_vec(g->ray_dirs[x]), g->distances_true[x]);
 		draw_line(g->player->loc, add_vecs(g->player->loc, hit_point),
-			g->scale, YELLOW, g->graphics);
+			YELLOW, g);
 		x += screen / 100;
 	}
 }
@@ -43,7 +43,7 @@ void	fill_grid(t_game *g, int x, int y, int scale)
 void	map_background(t_game *g)
 {
 	fill_rect(g, (t_loc){0, 0}, \
-	g->parser->map->rows, g->parser->map->columns, L_GRAY);
+	g->parser->map->rows, g->parser->map->columns);
 }
 
 void	draw_grid(t_game *g)
@@ -62,11 +62,11 @@ void	draw_grid(t_game *g)
 			if (x < g->parser->map->columns)
 			{
 				draw_line((t_loc){x, y}, (t_loc){x + 1, y},
-					s, GRAY, g->graphics);
+					GRAY, g);
 			}
 			if (y <= g->parser->map->rows)
 				draw_line((t_loc){x, y}, (t_loc){x, y + 1},
-					s, GRAY, g->graphics);
+					GRAY, g);
 			fill_grid(g, x, y, s);
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:23:34 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 16:43:42 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/15 19:04:49 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 // Here all rastarization functions are collected
 
-void	draw_line(t_loc l0, t_loc l1, int scale, int color, t_graphics *g)
+void	draw_line(t_loc l0, t_loc l1, int color, t_game *g)
 {
 	t_point	pt_px0;
 	t_point	pt_px1;
 
-	pt_px0.x = l0.x * scale;
-	pt_px0.y = l0.y * scale;
+	pt_px0.x = l0.x * g->scale;
+	pt_px0.y = l0.y * g->scale;
 	pt_px0.color = color;
-	pt_px1.x = l1.x * scale;
-	pt_px1.y = l1.y * scale;
+	pt_px1.x = l1.x * g->scale;
+	pt_px1.y = l1.y * g->scale;
 	pt_px1.color = color;
-	ft_plot_line(pt_px0, pt_px1, color, g);
+	ft_plot_line(pt_px0, pt_px1, color, g->graphics);
 }
 
 void	ft_plot_f_line(t_fpoint p0, t_fpoint p1, int color, t_graphics *g)
@@ -83,7 +83,7 @@ void	fill_sqare(t_game *g, t_loc corner, int side, int color)
 	}
 }
 
-void	fill_rect(t_game *g, t_loc corner, int x, int y, int color)
+void	fill_rect(t_game *g, t_loc corner, int x, int y)
 {
 	int	corner_x;
 	int	corner_y;
@@ -98,7 +98,7 @@ void	fill_rect(t_game *g, t_loc corner, int x, int y, int color)
 		j = 0;
 		while (j < x * g->scale)
 		{
-			api_put_pixel(g->graphics, corner_x + i, corner_y + j, color);
+			api_put_pixel(g->graphics, corner_x + i, corner_y + j, L_GRAY);
 			j++;
 		}
 		i++;
