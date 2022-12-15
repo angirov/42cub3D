@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 16:00:36 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/16 00:15:07 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/16 00:59:23 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 void	ft_free_game(t_game *game)
 {
 	free(game->graphics);
-	free(game->parser);
 	free(game->player);
 	free(game->distances_corr);
 	free(game->distances_true);

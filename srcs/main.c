@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:20:19 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/16 00:09:58 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/16 00:55:29 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,6 @@ void	draw_all(t_game *game)
 		game->graphics->img_prt, 0, 0);
 }
 
-void	call_parser(t_game *g, int argc, char **argv)
-{
-	g->parser = malloc(sizeof(t_parser));
-	*g->parser = (t_parser){0};
-	g->parser->mlx = g->graphics->mlx_ptr;
-	parse(g->parser, argv[1]);
-	set_sizes(g, g->parser->map->columns, g->parser->map->rows, 20);
-}
-
 void	inits_for_casting(t_game *game)
 {
 	int	screen;
@@ -43,16 +34,36 @@ void	inits_for_casting(t_game *game)
 	game->ray_dirs = malloc(sizeof(t_loc) * screen);
 }
 
+void	api_init_graphics(t_game *game, int width, int height, char *title)
+{
+	game->graphics = (t_graphics *)malloc(sizeof(t_graphics));
+	game->graphics->screen_width = 1600;
+	game->graphics->screen_height = 800;
+	game->graphics->mlx_ptr = game->parser->mlx;
+	game->graphics->win_ptr = mlx_new_window(game->graphics->mlx_ptr,
+			width, height, title);
+	game->graphics->img_prt = mlx_new_image(game->graphics->mlx_ptr,
+			width, height);
+	game->graphics->img_addr = mlx_get_data_addr(game->graphics->img_prt,
+			&game->graphics->bits_per_pixel, &game->graphics->line_length,
+			&game->graphics->endian);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game		*game;
+	t_parser	parser;
 
 	if (argc != 2)
 		quit_game(NULL, WRNG_ARG, NULL);
+	parser = (t_parser){0};
+	parser.mlx = mlx_init();
+	parse(&parser, argv[1]);
 	game = (t_game *)malloc(sizeof(t_game));
-	game->graphics = api_init_graphics(1600, 800, TITLE);
+	game->parser = &parser;
+	api_init_graphics(game, 1600, 800, TITLE);
 	inits_for_casting(game);
-	call_parser(game, argc, argv);
+	set_sizes(game, game->parser->map->columns, game->parser->map->rows, 20);
 	game->player = (t_player *)malloc(sizeof(t_player));
 	game->player->game = game;
 	player_set_locdir(game);

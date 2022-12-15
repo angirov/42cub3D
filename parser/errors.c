@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:06:56 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/16 00:13:39 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/16 00:48:28 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ t_color	***create_array_of_colors(t_image *texture)
 		}
 		j++;
 	}
+	array[j] = NULL;
 	return (array);
 }

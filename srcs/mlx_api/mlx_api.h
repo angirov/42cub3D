@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 16:08:22 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/15 21:09:08 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/16 00:55:45 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,8 @@ typedef struct s_graphics
 	int		scale;
 }	t_graphics;
 
-t_graphics	*api_init_graphics(int widht, int height, char *title);
+void	api_put_pixel(t_graphics *data, int x, int y, int color);
 
-void		api_put_pixel(t_graphics *data, int x, int y, int color);
-
-void		api_free_graphics(void *mlx_ptr,
-				void *win_ptr, void *img_prt);
+void	api_free_graphics(void *mlx_ptr, void *win_ptr, void *img_prt);
 
 #endif

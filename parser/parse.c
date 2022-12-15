@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:30:22 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/09 20:59:52 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/16 01:06:00 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	parse(t_parser *game, char *file)
 	if (fd < 0)
 		quit_game(game, errno, "We were unable to open the file:(");
 	colors_n_textures(fd, game, &line);
-	is_everything_in_place(game);
+	is_everything_in_place(game, &line);
 	parse_map(game, fd, line);
 	close(fd);
 }
@@ -55,7 +55,7 @@ void	colors_n_textures(int fd, t_parser *game, char **line)
 	free(*line);
 }
 
-void	is_everything_in_place(t_parser *game)
+void	is_everything_in_place(t_parser *game, char **line)
 {
 	if (game->settings->ceiling_color == -1
 		|| game->settings->floor_color == -1
@@ -63,8 +63,11 @@ void	is_everything_in_place(t_parser *game)
 		|| !game->settings->textures[1].ptr
 		|| !game->settings->textures[2].ptr
 		|| !game->settings->textures[3].ptr)
+	{
+		free(*line);
 		quit_game(game, MAP_RULES,
 			"Colors for ceiling and floor + all 4 textures should be present");
+	}
 }
 
 void	parse_map(t_parser *game, int fd, char *line)

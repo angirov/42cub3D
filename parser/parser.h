@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 16:57:40 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/16 00:07:56 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/16 01:06:16 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_color	***create_array_of_colors(t_image *texture);
 /////parse.c
 void	parse(t_parser *game, char *file);
 void	colors_n_textures(int fd, t_parser *game, char **line);
-void	is_everything_in_place(t_parser *game);
+void	is_everything_in_place(t_parser *game, char **line);
 void	parse_map(t_parser *game, int fd, char *line);
 /////colors_n_textures.c
 void	set_color(char *line, int *color, t_parser *game, int i);
