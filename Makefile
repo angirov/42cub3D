@@ -56,14 +56,16 @@ RM = rm -rf
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(INCLUDES_LOCAL) $(ALL_LIBS) $(HEADERS) -L$(MLX_PATH) -l$(MLX_LIB) $(MLX_FLAFS) -o $(NAME)
-
-%.o: %.c $(HEADERS) makelibs
-	$(CC) $(CFLAGS) $(INCLUDES_LOCAL) -I/usr/include -c $< -o $@ 
-
-makelibs:
 	make -C $(LIBFT_DIR)
 	make -C $(MLX_PATH)
+	$(CC) $(OBJ) $(INCLUDES_LOCAL) $(ALL_LIBS) $(HEADERS) -L$(MLX_PATH) -l$(MLX_LIB) $(MLX_FLAFS) -o $(NAME)
+
+%.o: %.c $(HEADERS) # makelibs
+	$(CC) $(CFLAGS) $(INCLUDES_LOCAL) -I/usr/include -c $< -o $@ 
+
+#makelibs:
+#	make -C $(LIBFT_DIR)
+#	make -C $(MLX_PATH)
 
 clean: cleanlibs
 	$(RM) $(OBJ)
