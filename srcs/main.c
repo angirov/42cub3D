@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 14:20:19 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/16 00:55:29 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:03:42 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	inits_for_casting(t_game *game)
 void	api_init_graphics(t_game *game, int width, int height, char *title)
 {
 	game->graphics = (t_graphics *)malloc(sizeof(t_graphics));
-	game->graphics->screen_width = 1600;
-	game->graphics->screen_height = 800;
+	game->graphics->screen_width = width;
+	game->graphics->screen_height = height;
 	game->graphics->mlx_ptr = game->parser->mlx;
 	game->graphics->win_ptr = mlx_new_window(game->graphics->mlx_ptr,
 			width, height, title);
@@ -61,7 +61,7 @@ int	main(int argc, char **argv)
 	parse(&parser, argv[1]);
 	game = (t_game *)malloc(sizeof(t_game));
 	game->parser = &parser;
-	api_init_graphics(game, 1600, 800, TITLE);
+	api_init_graphics(game, WIDTH, HEIGHT, TITLE);
 	inits_for_casting(game);
 	set_sizes(game, game->parser->map->columns, game->parser->map->rows, 20);
 	game->player = (t_player *)malloc(sizeof(t_player));
