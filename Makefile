@@ -95,7 +95,6 @@ fcleanlibs:
 	make fclean -C $(LIBFT_DIR)
 	make clean -C $(MLX_PATH)
 
-test:
-	@echo $(OBJ)
+re: clean all
 
-.PHONY: all clean fclean re makelibs test
+.PHONY: all clean fclean re makelibs
