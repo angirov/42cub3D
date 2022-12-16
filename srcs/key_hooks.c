@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 15:57:53 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 02:02:16 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/16 22:11:52 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ int	deal_key(int key, t_game *game)
 {
 	if (key == KEY_ESC)
 		ft_destroy(game);
-	if (key == KEY_LEFT)
+	if (key == KEY_A)
 		player_move(game->player, 270);
-	if (key == KEY_UP)
-		player_move(game->player, 0);
-	if (key == KEY_RIGHT)
-		player_move(game->player, 90);
-	if (key == KEY_DOWN)
-		player_move(game->player, 180);
-	if (key == KEY_Q)
-		player_turn_left(game->player);
 	if (key == KEY_W)
+		player_move(game->player, 0);
+	if (key == KEY_D)
+		player_move(game->player, 90);
+	if (key == KEY_S)
+		player_move(game->player, 180);
+	if (key == KEY_LEFT)
+		player_turn_left(game->player);
+	if (key == KEY_RIGHT)
 		player_turn_right(game->player);
 	printf("loc: %lf : %lf\n", game->player->loc.x,
 		game->player->loc.y);

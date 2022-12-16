@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 16:08:22 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/16 00:55:45 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/16 22:27:38 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 #  define KEY_P 112
 #  define KEY_I 105
 #  define KEY_C 99
+#  define KEY_D 100
 
 # elif defined(__APPLE__)
 #  include <stdlib.h>
@@ -63,6 +64,7 @@
 #  define KEY_P 35
 #  define KEY_I 34
 #  define KEY_C 8
+#  define KEY_D 2
 
 # endif
 
