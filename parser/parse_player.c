@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:34:43 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/15 22:33:17 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:39:17 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	parse_player(t_parser *game)
 
 void	assign_direction(t_parser *game, char c)
 {
-	if (c == 'E')
+	if (c == 'W')
 		game->map->player_dir = 0;
 	else if (c == 'N')
 		game->map->player_dir = 90;
-	else if (c == 'W')
+	else if (c == 'E')
 		game->map->player_dir = 180;
 	else if (c == 'S')
 		game->map->player_dir = 270;
