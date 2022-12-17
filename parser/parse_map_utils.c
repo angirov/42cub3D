@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:13:20 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/15 21:48:37 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/17 12:04:22 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ void	malloc_map(t_parser *game)
 	int	i;
 
 	i = 0;
-	game->map->values = malloc(sizeof(char *) * (game->map->rows + 1));
+	game->map->values = ft_calloc((game->map->rows + 1), sizeof(char *));
 	if (!game->map->values)
 		quit_game(game, errno,
 			"Error with memory allocation for values of the map");
 	while (i < game->map->rows)
 	{
-		game->map->values[i] = malloc(sizeof(char) * (game->map->columns + 1));
+		game->map->values[i] = ft_calloc((game->map->columns + 1), sizeof(char));
 		if (!game->map->values[i])
 			quit_game(game, errno,
 				"Error with memory allocation for values of the map");
