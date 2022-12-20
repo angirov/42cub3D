@@ -10,6 +10,7 @@ SRCS_FILES =	main.c \
 				key_hooks.c \
 				math.c \
 				minimap.c \
+				player.c \
 				raycasting.c \
 				walls_tex.c \
 				raycasting_utils.c \

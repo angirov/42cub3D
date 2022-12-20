@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:23:34 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 19:04:49 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/20 23:52:31 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ void	fill_sqare(t_game *g, t_loc corner, int side, int color)
 	corner_x = corner.x * g->scale;
 	corner_y = corner.y * g->scale;
 	i = 0;
-	while (i < side * g->scale)
+	while (i < side)
 	{
 		j = 0;
-		while (j < side * g->scale)
+		while (j < side)
 		{
 			api_put_pixel(g->graphics, corner_x + i, corner_y + j, color);
 			j++;

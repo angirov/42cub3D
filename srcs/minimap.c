@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:31:21 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 19:04:37 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/21 00:04:05 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	map_value(t_game *g, int x, int y)
 void	fill_grid(t_game *g, int x, int y, int scale)
 {
 	if (is_wall(g, x, y))
-		fill_sqare(g, (t_loc){x, y}, 1, GRAY);
+		fill_sqare(g, (t_loc){x, y}, g->scale, GRAY);
 }
 
 void	map_background(t_game *g)

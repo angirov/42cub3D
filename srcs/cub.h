@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: vangirov <vangirov@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 19:05:05 by vangirov          #+#    #+#             */
-/*   Updated: 2022/12/15 23:50:22 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/21 00:01:58 by vangirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define WIDTH 1600
 # define HEIGHT 800
 # define HORISONT 0.7
+# define PLAYERSIZE 0.3
 # define TITLE "Cub3D"
 
 // colors
@@ -153,6 +154,7 @@ void	set_step_side_dist_true(t_game *g, t_raycast *rc, int x);
 void	set_side_dist_true(t_game *g, t_raycast *rc, int x, int side);
 
 // drawing.c
+void	draw_player(t_player *p);
 void	draw_line(t_loc l0, t_loc l1, int color, t_game *g);
 void	ft_plot_f_line(t_fpoint p0, t_fpoint p1, int color, t_graphics *g);
 void	ft_plot_line(t_point p0, t_point p1, int color, t_graphics *g);
