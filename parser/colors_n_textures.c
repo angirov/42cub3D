@@ -6,7 +6,7 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:09:46 by mokatova          #+#    #+#             */
-/*   Updated: 2022/12/16 01:11:06 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/22 00:43:25 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	set_textures(char *line, t_parser *game, int j, int i)
 	if (import_textures(&line[j], &game->settings->textures[i], game) != 0)
 	{
 		free(line);
-		quit_game(game, MAP_RULES, "Check that texture's extension is .xpm");
+		quit_game(game, MAP_RULES, "Check textures' paths and extensions");
 	}
 }
 
@@ -115,7 +115,8 @@ int	import_textures(char *line, t_image *texture, t_parser *game)
 	char	*tmp;
 
 	tmp = ft_substr(line, 0, ft_strlen(line));
-	if (ft_strncmp(&line[ft_strlen(line) - 4], ".xpm", 4) == 0)
+	if (ft_strncmp(&line[ft_strlen(line) - 4], ".xpm", 4) == 0
+		&& access(tmp, F_OK) == 0)
 		texture->ptr = mlx_xpm_file_to_image(game->mlx, tmp,
 				&texture->width, &texture->height);
 	else

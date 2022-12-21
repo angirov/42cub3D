@@ -6,108 +6,110 @@
 /*   By: mokatova <mokatova@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 22:14:42 by vangirov          #+#    #+#             */
-/*   Updated: 2022/10/12 13:44:48 by mokatova         ###   ########.fr       */
+/*   Updated: 2022/12/22 00:42:07 by mokatova         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*get_next_line(int fd)
-{
-	int		i;
-	int		rd;
-	char	*line;
-
-	i = 0;
-	rd = 0;
-	line = malloc(100000);
-	while (1)
-	{
-		rd = read(fd, &line[i], 1);
-		if (rd <= 0 || line[i] == '\n')
-			break ;
-		i++;
-	}
-	if ((!rd && !line[i - 1]) || rd == -1)
-	{
-		free(line);
-		return (NULL);
-	}
-	line[i] = '\0';
-	return (line);
-}
-
-// #include <stdlib.h>
-// #include <unistd.h>
 // #include "libft.h"
-
-// #ifndef BUFFER_SIZE
-// # define BUFFER_SIZE 1
-// #endif
-
-// static int	ft_read(int fd, char *buff, int size)
-// {
-// 	int	rd;
-
-// 	rd = read(fd, buff, size);
-// 	buff[rd] = '\0';
-// 	return (rd);
-// }
-
-// static char	*ft_concat(char *line, char *nonl_buff)
-// {
-// 	char	*newline;
-
-// 	newline = ft_strjoin(line, nonl_buff);
-// 	free(line);
-// 	return (newline);
-// }
-
-// static char	*ft_get_tail(char *line, char *buff)
-// {
-// 	size_t	len;
-// 	char	*tail;
-// 	char	*rest;
-
-// 	rest = ft_strchr(buff, '\n');
-// 	if (!rest)
-// 		return (ft_concat(line, buff));
-// 	rest++;
-// 	len = rest - buff;
-// 	tail = (char *)malloc(sizeof(char) * len + 1);
-// 	ft_strlcpy(tail, buff, len + 1);
-// 	len = ft_strlen(rest);
-// 	ft_memmove(buff, rest, len + 1);
-// 	line = ft_concat(line, tail);
-// 	free(tail);
-// 	return (line);
-// }
 
 // char	*get_next_line(int fd)
 // {
-// 	static char	buff[BUFFER_SIZE + 1];
-// 	char		*line;
-// 	ssize_t		rd;
+// 	int		i;
+// 	int		rd;
+// 	char	*line;
 
-// 	if (fd < 0)
-// 		return (NULL);
-// 	line = (char *)malloc(1);
-// 	line[0] = '\0';
-// 	while (!ft_strchr(buff, '\n'))
+// 	i = 0;
+// 	rd = 0;
+// 	line = malloc(100000);
+// 	while (1)
 // 	{
-// 		line = ft_concat(line, buff);
-// 		rd = ft_read(fd, buff, BUFFER_SIZE);
-// 		if (!rd && line[0])
+// 		rd = read(fd, &line[i], 1);
+// 		if (rd <= 0 || line[i] == '\n')
 // 			break ;
-// 		if (rd < 1)
-// 		{
-// 			free(line);
-// 			return (NULL);
-// 		}
+// 		i++;
 // 	}
-// 	line = ft_get_tail(line, buff);
+// 	if ((!rd && !line[i - 1]) || rd == -1)
+// 	{
+// 		free(line);
+// 		return (NULL);
+// 	}
+// 	line[i] = '\0';
 // 	return (line);
 // }
+
+#include <stdlib.h>
+#include <unistd.h>
+#include "libft.h"
+
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 1
+#endif
+
+static int	ft_read(int fd, char *buff, int size)
+{
+	int	rd;
+
+	rd = read(fd, buff, size);
+	buff[rd] = '\0';
+	return (rd);
+}
+
+static char	*ft_concat(char *line, char *nonl_buff)
+{
+	char	*newline;
+
+	newline = ft_strjoin(line, nonl_buff);
+	free(line);
+	return (newline);
+}
+
+static char	*ft_get_tail(char *line, char *buff)
+{
+	size_t	len;
+	char	*tail;
+	char	*rest;
+
+	rest = ft_strchr(buff, '\n');
+	if (!rest)
+		return (ft_concat(line, buff));
+	rest++;
+	len = rest - buff;
+	tail = (char *)malloc(sizeof(char) * len + 1);
+	ft_strlcpy(tail, buff, len + 1);
+	len = ft_strlen(rest);
+	ft_memmove(buff, rest, len + 1);
+	line = ft_concat(line, tail);
+	free(tail);
+	return (line);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	buff[BUFFER_SIZE + 1];
+	char		*line;
+	ssize_t		rd;
+
+	if (fd < 0)
+		return (NULL);
+	line = (char *)malloc(1);
+	line[0] = '\0';
+	while (!ft_strchr(buff, '\n'))
+	{
+		line = ft_concat(line, buff);
+		rd = ft_read(fd, buff, BUFFER_SIZE);
+		if (!rd && line[0])
+			break ;
+		if (rd < 1)
+		{
+			free(line);
+			return (NULL);
+		}
+	}
+	line = ft_get_tail(line, buff);
+	if (line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = '\0';
+	return (line);
+}
 
 // #define BUFFER_SIZE 1
 
